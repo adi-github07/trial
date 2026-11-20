@@ -499,6 +499,8 @@ footer { padding: 28px 20px; text-align: center; font-size: 11px; color: var(--t
   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg>
 </button>
 
+<canvas id="haldiCanvas" style="position:fixed;inset:0;width:100vw;height:100vh;pointer-events:none;z-index:1100;"></canvas>
+
 <script>
 document.addEventListener("DOMContentLoaded", () => {
   const welcomeScreen = document.getElementById("welcomeScreen");
@@ -657,6 +659,69 @@ document.addEventListener("DOMContentLoaded", () => {
 
   window.addEventListener("scroll", () => { backTop.style.display = window.scrollY > 500 ? "flex" : "none"; });
   backTop.addEventListener("click", () => { stopAutoScroll(); window.scrollTo({ top: 0, behavior: "smooth" }); });
+
+  const haldiCard = document.querySelector(".event-haldi");
+  const haldiCanvas = document.getElementById("haldiCanvas");
+  const hCtx = haldiCanvas ? haldiCanvas.getContext("2d") : null;
+  let haldiParticles = [];
+  let haldiAnimId = null;
+
+  function resizeHaldiCanvas() {
+    if (!haldiCanvas) return;
+    haldiCanvas.width = window.innerWidth;
+    haldiCanvas.height = window.innerHeight;
+  }
+  resizeHaldiCanvas();
+  window.addEventListener("resize", resizeHaldiCanvas);
+
+  function spawnHaldiBurst(originX, originY) {
+    if (!hCtx) return;
+    const palette = ["#F6C927", "#FFA800", "#FF8C1A", "#FFE066", "#E5A910"];
+    for (let i = 0; i < 85; i++) {
+      const angle = Math.random() * Math.PI * 2;
+      const speed = Math.random() * 8 + 2.5;
+      const isPetal = Math.random() > 0.35;
+      haldiParticles.push({
+        x: originX, y: originY,
+        vx: Math.cos(angle) * speed, vy: Math.sin(angle) * speed - 3.5,
+        size: Math.random() * 8 + 5,
+        color: palette[Math.floor(Math.random() * palette.length)],
+        rot: Math.random() * Math.PI * 2, vRot: (Math.random() - 0.5) * 0.22,
+        alpha: 1, decay: Math.random() * 0.012 + 0.008, isPetal
+      });
+    }
+    if (!haldiAnimId) renderHaldi();
+  }
+
+  function renderHaldi() {
+    hCtx.clearRect(0, 0, haldiCanvas.width, haldiCanvas.height);
+    for (let i = haldiParticles.length - 1; i >= 0; i--) {
+      const p = haldiParticles[i];
+      p.x += p.vx; p.y += p.vy; p.vy += 0.18; p.vx *= 0.99;
+      p.rot += p.vRot; p.alpha -= p.decay;
+      if (p.alpha <= 0) { haldiParticles.splice(i, 1); continue; }
+      hCtx.save();
+      hCtx.globalAlpha = Math.max(0, p.alpha);
+      hCtx.translate(p.x, p.y); hCtx.rotate(p.rot); hCtx.fillStyle = p.color;
+      if (p.isPetal) {
+        hCtx.beginPath();
+        hCtx.ellipse(0, 0, p.size * 0.75, p.size * 0.42, 0, 0, Math.PI * 2);
+        hCtx.fill();
+      } else {
+        hCtx.fillRect(-p.size / 2, -p.size / 3, p.size, p.size * 0.65);
+      }
+      hCtx.restore();
+    }
+    if (haldiParticles.length > 0) haldiAnimId = requestAnimationFrame(renderHaldi);
+    else { hCtx.clearRect(0, 0, haldiCanvas.width, haldiCanvas.height); haldiAnimId = null; }
+  }
+
+  if (haldiCard) {
+    haldiCard.addEventListener("click", (e) => {
+      const rect = haldiCard.getBoundingClientRect();
+      spawnHaldiBurst(e.clientX || rect.left + rect.width / 2, e.clientY || rect.top + rect.height / 2);
+    });
+  }
 });
 </script>
 </body>
