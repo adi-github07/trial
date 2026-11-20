@@ -1,10 +1,9 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Preeti & Aditya | Wedding Invitation</title>
+<title>Preeti &amp; Aditya | Wedding Invitation</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
 
@@ -25,6 +24,9 @@ html {
   --text-main: #543f3e;
   --text-light: #947d7c;
   --accent: #b56c6e;
+  --rose-foil: #c97a7e;
+  --gold-foil: linear-gradient(125deg, #c79a3b 0%, #f3dc94 45%, #b8892a 75%, #ead084 100%);
+  --gold-solid: #c49b38;
   --border: rgba(181, 108, 110, 0.25);
 }
 
@@ -61,9 +63,69 @@ h1, h2, h3, .serif {
 }
 
 /* =========================================
+   FOIL SVG ACCENTS & DIVIDERS
+   ========================================= */
+.foil-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  margin: 24px auto;
+  max-width: 280px;
+}
+
+.foil-divider::before,
+.foil-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(196, 155, 56, 0.55), rgba(201, 122, 126, 0.55), transparent);
+}
+
+.foil-svg-gold {
+  color: var(--gold-solid);
+  filter: drop-shadow(0 1px 2px rgba(196, 155, 56, 0.28));
+}
+
+.foil-svg-rose {
+  color: var(--rose-foil);
+  filter: drop-shadow(0 1px 2px rgba(181, 108, 110, 0.22));
+}
+
+.corner-flourish {
+  position: absolute;
+  width: 56px;
+  height: 56px;
+  pointer-events: none;
+  opacity: 0.72;
+}
+
+.corner-flourish.top-left {
+  top: 10px;
+  left: 10px;
+}
+
+.corner-flourish.top-right {
+  top: 10px;
+  right: 10px;
+  transform: scaleX(-1);
+}
+
+.corner-flourish.bottom-left {
+  bottom: 10px;
+  left: 10px;
+  transform: scaleY(-1);
+}
+
+.corner-flourish.bottom-right {
+  bottom: 10px;
+  right: 10px;
+  transform: scale(-1, -1);
+}
+
+/* =========================================
    ROYAL SCROLL WELCOME SCREEN
    ========================================= */
-
 #welcomeScreen {
   position: fixed;
   inset: 0;
@@ -73,7 +135,7 @@ h1, h2, h3, .serif {
   justify-content: center;
   background: radial-gradient(circle at center, #fff7f5 0%, #ecd0cb 100%);
   cursor: pointer;
-  transition: opacity 1.5s cubic-bezier(0.22, 1, 0.36, 1), visibility 1.5s;
+  transition: opacity 1.4s cubic-bezier(0.22, 1, 0.36, 1), visibility 1.4s;
   user-select: none;
   -webkit-tap-highlight-color: transparent;
 }
@@ -86,50 +148,49 @@ h1, h2, h3, .serif {
 
 .scroll-container {
   position: relative;
-  width: min(420px, 92vw);
+  width: min(430px, 92vw);
   background: #fbf8f2;
   border: 1px solid #dcd2c4;
   border-radius: 6px;
   box-shadow: 0 25px 60px rgba(84, 63, 62, 0.2), inset 0 0 40px rgba(212, 196, 178, 0.35);
   padding: 65px 40px;
   text-align: center;
-  transform: scale(0.95);
+  transform: scale(0.96);
   transition: transform 1.2s cubic-bezier(0.22, 1, 0.36, 1), max-height 1.2s cubic-bezier(0.22, 1, 0.36, 1);
-  max-height: 480px;
+  max-height: 500px;
   overflow: hidden;
 }
 
 #welcomeScreen.opening .scroll-container {
   transform: scale(1.02);
-  max-height: 850px;
+  max-height: 860px;
   box-shadow: 0 35px 80px rgba(84, 63, 62, 0.25);
 }
-
-/* Wooden rods */
 
 .scroll-rod-top, .scroll-rod-bottom {
   position: absolute;
   left: -10px;
   right: -10px;
   height: 16px;
-  background: linear-gradient(90deg, #c4a482, #f3e2ca, #c4a482);
+  background: linear-gradient(90deg, #b8925a, #f5e5c8, #c49b38, #f5e5c8, #b8925a);
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.18);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.18);
 }
-
 .scroll-rod-top { top: -8px; }
 .scroll-rod-bottom { bottom: -8px; }
 
 .scroll-content {
   opacity: 1;
   transition: opacity 0.8s ease;
+  position: relative;
+  z-index: 2;
 }
 
 .scroll-content h1 {
   font-family: 'Great Vibes', cursive;
   font-size: clamp(50px, 10vw, 75px);
   color: var(--accent);
-  margin: 18px 0;
+  margin: 14px 0;
   line-height: 1.15;
 }
 
@@ -137,26 +198,25 @@ h1, h2, h3, .serif {
   font-family: 'Playfair Display', serif;
   font-size: 14px;
   letter-spacing: 4px;
-  margin-top: 18px;
+  margin-top: 14px;
   color: var(--text-main);
 }
 
-/* Gold ribbon */
-
+/* Satin Ribbon & Center Seal */
 .ribbon-band {
   position: absolute;
   top: 50%;
   left: -20px;
   right: -20px;
   height: 52px;
-  background: linear-gradient(180deg, #dfbc54 0%, #c49d30 50%, #dfbc54 100%);
+  background: linear-gradient(180deg, #e5c35e 0%, #c49b38 50%, #e5c35e 100%);
   transform: translateY(-50%);
-  box-shadow: 0 6px 16px rgba(196, 157, 48, 0.4);
+  box-shadow: 0 6px 16px rgba(196, 155, 56, 0.4);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 5;
-  transition: transform 1s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.6s ease;
+  transition: transform 0.95s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.6s ease;
 }
 
 #welcomeScreen.opening .ribbon-band {
@@ -176,16 +236,14 @@ h1, h2, h3, .serif {
   position: absolute;
   width: 32px;
   height: 22px;
-  border: 4px solid #f3e198;
+  border: 4px solid #f4e39e;
   border-radius: 50%;
   top: -11px;
 }
-
 .ribbon-knot::before {
   right: 22px;
   transform: rotate(-15deg);
 }
-
 .ribbon-knot::after {
   left: 22px;
   transform: rotate(15deg);
@@ -194,9 +252,10 @@ h1, h2, h3, .serif {
 .ribbon-seal {
   width: 58px;
   height: 58px;
-  background: radial-gradient(circle at 35% 35%, #d67a7e 0%, #b55459 60%, #8c383d 100%);
+  background: radial-gradient(circle at 35% 35%, #dc8286 0%, #b55459 60%, #8c383d 100%);
   border-radius: 50%;
-  box-shadow: 0 4px 12px rgba(140, 56, 61, 0.45), inset 0 2px 4px rgba(255,255,255,0.4);
+  border: 1.5px solid rgba(244, 227, 158, 0.65);
+  box-shadow: 0 4px 12px rgba(140, 56, 61, 0.45), inset 0 2px 4px rgba(255, 255, 255, 0.4);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -206,57 +265,57 @@ h1, h2, h3, .serif {
   font-weight: 600;
   letter-spacing: 1.5px;
   z-index: 2;
+  transition: transform 0.35s ease;
+}
+
+#welcomeScreen:hover .ribbon-seal {
+  transform: scale(1.06);
 }
 
 .tap-hint {
-  margin-top: 30px;
+  margin-top: 24px;
   font-size: 11px;
   letter-spacing: 3.5px;
   text-transform: uppercase;
   color: var(--text-light);
-  animation: pulseHint 2s infinite ease-in-out;
+  animation: pulseHint 2.2s infinite ease-in-out;
 }
 
 @keyframes pulseHint {
-  0%, 100% { opacity: 0.4; }
+  0%, 100% { opacity: 0.45; }
   50% { opacity: 1; }
 }
 
-/* =========================================
-   FLOATING ROSE PETALS
-   ========================================= */
-
+/* Floating Rose Petals */
 .petal {
-  position: absolute;
-  background: #e8a5a7;
+  position: fixed;
+  background: linear-gradient(135deg, #f2b8ba, #d9888c);
   border-radius: 150% 0 150% 0;
-  opacity: 0.7;
+  opacity: 0.68;
   animation: fallPetal linear infinite;
   z-index: 999;
   pointer-events: none;
+  transition: opacity 0.8s ease;
+}
+
+.petal.fade-out {
+  opacity: 0 !important;
 }
 
 @keyframes fallPetal {
-  0% {
-    transform: translateY(-10vh) rotate(0deg);
-    opacity: 0;
-  }
-  20% { opacity: 0.8; }
-  100% {
-    transform: translateY(105vh) rotate(360deg);
-    opacity: 0;
-  }
+  0% { transform: translateY(-10vh) rotate(0deg); opacity: 0; }
+  20% { opacity: 0.75; }
+  100% { transform: translateY(105vh) rotate(360deg); opacity: 0; }
 }
 
 /* =========================================
    MAIN LAYOUT
    ========================================= */
-
 #invitation {
   opacity: 0;
   transform: translateY(20px);
   visibility: hidden;
-  transition: opacity 1.5s cubic-bezier(0.22, 1, 0.36, 1), transform 1.5s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: opacity 1.4s cubic-bezier(0.22, 1, 0.36, 1), transform 1.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 #invitation.visible {
@@ -266,7 +325,7 @@ h1, h2, h3, .serif {
 }
 
 section {
-  padding: 100px 20px;
+  padding: 96px 20px;
   text-align: center;
   max-width: 1000px;
   margin: 0 auto;
@@ -278,21 +337,13 @@ section {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: radial-gradient(circle at center, #fff7f5 0%, transparent 70%);
-}
-
-.hero-divider {
-  width: 1px;
-  height: 60px;
-  background: var(--accent);
-  margin: 30px auto;
-  opacity: 0.5;
+  background: radial-gradient(circle at center, #fff7f5 0%, transparent 72%);
 }
 
 .hero h1 {
-  font-size: clamp(40px, 8vw, 65px);
+  font-size: clamp(40px, 8vw, 66px);
   letter-spacing: 2px;
-  margin: 20px 0;
+  margin: 18px 0 8px;
   line-height: 1.3;
 }
 
@@ -307,29 +358,28 @@ section {
 .hero .date {
   font-size: 18px;
   letter-spacing: 3px;
-  margin-top: 15px;
+  margin-top: 8px;
 }
-
-/* FAMILY */
 
 .parents-section {
   background: var(--surface);
-  padding: 80px 20px;
+  padding: 84px 20px;
   border-top: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
+  position: relative;
 }
 
 .section-title {
   font-size: 42px;
   color: var(--text-main);
-  margin-bottom: 15px;
+  margin-bottom: 10px;
 }
 
 .parents-grid {
   display: flex;
   justify-content: center;
   gap: 80px;
-  margin-top: 50px;
+  margin-top: 44px;
   flex-wrap: wrap;
 }
 
@@ -345,23 +395,21 @@ section {
   line-height: 2;
 }
 
-/* COUNTDOWN */
-
 .countdown-grid {
   display: flex;
   justify-content: center;
   gap: 20px;
   flex-wrap: wrap;
-  margin-top: 40px;
+  margin-top: 36px;
 }
 
 .time-box {
-  width: 90px;
+  width: 92px;
   padding: 20px 0;
   background: var(--surface);
-  border: 1px solid var(--border);
+  border: 1px solid rgba(196, 155, 56, 0.35);
   border-radius: 4px;
-  box-shadow: 0 5px 15px rgba(181, 108, 110, 0.08);
+  box-shadow: 0 6px 18px rgba(181, 108, 110, 0.08);
 }
 
 .time-box strong {
@@ -381,32 +429,31 @@ section {
   display: block;
 }
 
-/* EVENTS */
-
 .event-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 30px;
-  margin-top: 50px;
+  gap: 28px;
+  margin-top: 44px;
 }
 
 .event-card {
-  padding: 50px 30px;
+  padding: 46px 28px;
   border-radius: 6px;
-  transition: all 0.4s ease;
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
   position: relative;
   border: 1px solid transparent;
+  overflow: hidden;
 }
 
 .event-card:hover {
   transform: translateY(-5px);
+  box-shadow: 0 12px 24px rgba(84, 63, 62, 0.08);
 }
 
 .event-icon {
-  font-family: 'Great Vibes', cursive;
-  font-size: 35px;
-  margin-bottom: 15px;
-  display: block;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 14px;
 }
 
 .event-card h3 {
@@ -431,48 +478,34 @@ section {
   background: linear-gradient(145deg, #fffcf0, #faefc3);
   border-color: #ebd688;
 }
-
-.event-haldi .event-icon, .event-haldi .time {
-  color: #b88f0a;
-}
+.event-haldi .event-icon, .event-haldi .time { color: #b88f0a; }
 
 .event-mehendi {
   background: linear-gradient(145deg, #f2fbf2, #dcf0dc);
   border-color: #b0d9b0;
 }
-
-.event-mehendi .event-icon, .event-mehendi .time {
-  color: #5f965f;
-}
+.event-mehendi .event-icon, .event-mehendi .time { color: #5f965f; }
 
 .event-sangeet {
   background: linear-gradient(145deg, #f7f2fb, #e6daef);
   border-color: #c9b9db;
 }
-
-.event-sangeet .event-icon, .event-sangeet .time {
-  color: #795d9c;
-}
+.event-sangeet .event-icon, .event-sangeet .time { color: #795d9c; }
 
 .event-wedding {
   background: linear-gradient(145deg, #fff5f5, #fad4d2);
   border-color: #e6b1ae;
 }
-
-.event-wedding .event-icon, .event-wedding .time {
-  color: #b56c6e;
-}
-
-/* VENUE */
+.event-wedding .event-icon, .event-wedding .time { color: #b56c6e; }
 
 .venue-section {
   border-top: 1px solid var(--border);
-  padding: 100px 20px;
+  padding: 96px 20px;
 }
 
 .map-link {
   display: inline-block;
-  margin-top: 30px;
+  margin-top: 28px;
   padding: 14px 35px;
   color: var(--text-main);
   border: 1px solid var(--text-main);
@@ -481,7 +514,7 @@ section {
   font-size: 11px;
   letter-spacing: 2px;
   text-transform: uppercase;
-  transition: 0.4s ease;
+  transition: all 0.35s ease;
 }
 
 .map-link:hover {
@@ -489,10 +522,8 @@ section {
   color: #fff;
 }
 
-/* CLOSING */
-
 .closing {
-  padding: 120px 20px 80px;
+  padding: 110px 20px 80px;
   background: var(--surface);
   border-top: 1px solid var(--border);
 }
@@ -504,8 +535,6 @@ section {
   font-weight: 400;
 }
 
-/* MUSIC BUTTON */
-
 #musicToggle {
   position: fixed;
   bottom: 30px;
@@ -514,14 +543,14 @@ section {
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  border: 1px solid var(--border);
+  border: 1px solid rgba(196, 155, 56, 0.45);
   background: var(--surface);
   color: var(--accent);
   font-size: 20px;
   display: none;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 5px 20px rgba(181, 108, 110, 0.15);
+  box-shadow: 0 5px 20px rgba(181, 108, 110, 0.16);
   transition: all 0.3s ease;
 }
 
@@ -529,12 +558,6 @@ section {
   background: var(--accent);
   color: #fff;
 }
-
-#musicToggle.playing {
-  border-color: var(--accent);
-}
-
-/* BACK TO TOP */
 
 #backTop {
   display: none;
@@ -549,15 +572,14 @@ section {
   width: 45px;
   height: 45px;
   font-size: 18px;
-  transition: 0.3s;
+  transition: background 0.3s ease, transform 0.25s ease;
   box-shadow: 0 5px 15px rgba(84, 63, 62, 0.2);
 }
 
 #backTop:hover {
   background: var(--accent);
+  transform: translateY(-2px);
 }
-
-/* FOOTER */
 
 footer {
   padding: 30px;
@@ -569,12 +591,10 @@ footer {
   background: var(--bg-color);
 }
 
-/* FADE-IN */
-
 .fade-in {
   opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 1s ease, transform 1s ease;
+  transform: translateY(28px);
+  transition: opacity 0.95s ease, transform 0.95s ease;
 }
 
 .fade-in.visible {
@@ -582,42 +602,67 @@ footer {
   transform: translateY(0);
 }
 
-/* MOBILE */
-
-@media(max-width: 600px) {
+@media (max-width: 600px) {
   section { padding: 70px 20px; }
-
-  .parents-grid {
-    gap: 40px;
-    flex-direction: column;
-  }
-
-  .time-box {
-    width: 75px;
-    padding: 15px 0;
-  }
-
-  .time-box strong {
-    font-size: 24px;
-  }
-
-  .event-container {
-    grid-template-columns: 1fr;
-  }
+  .parents-grid { gap: 40px; flex-direction: column; }
+  .time-box { width: 75px; padding: 15px 0; }
+  .time-box strong { font-size: 24px; }
+  .event-container { grid-template-columns: 1fr; }
 }
 </style>
 </head>
 
 <body>
 
-<!-- ROYAL SCROLL WELCOME SCREEN -->
+<!-- Reusable Foil SVG Gradients -->
+<svg width="0" height="0" style="position:absolute;pointer-events:none;" aria-hidden="true">
+  <defs>
+    <linearGradient id="goldFoilGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#c69736" />
+      <stop offset="45%" stop-color="#f5df98" />
+      <stop offset="75%" stop-color="#b58424" />
+      <stop offset="100%" stop-color="#ebd07e" />
+    </linearGradient>
+    <linearGradient id="roseFoilGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#b56c6e" />
+      <stop offset="50%" stop-color="#e9a7aa" />
+      <stop offset="100%" stop-color="#a85a5d" />
+    </linearGradient>
+  </defs>
+</svg>
 
-<div id="welcomeScreen" role="button" tabindex="0" aria-label="Royal scroll wedding invitation">
-
+<!-- Royal Scroll Welcome Screen -->
+<div id="welcomeScreen" role="button" tabindex="0" aria-label="Open wedding invitation scroll">
   <div class="scroll-container">
-
     <div class="scroll-rod-top"></div>
 
+    <!-- Gold & Rose Corner Filigree -->
+    <svg class="corner-flourish top-left" viewBox="0 0 60 60" fill="none" aria-hidden="true">
+      <path d="M8 52 C8 22, 22 8, 52 8" stroke="url(#goldFoilGrad)" stroke-width="1.4" stroke-linecap="round" />
+      <path d="M14 44 C16 26, 26 16, 44 14" stroke="url(#roseFoilGrad)" stroke-width="1.1" stroke-linecap="round" />
+      <circle cx="52" cy="8" r="2.5" fill="url(#goldFoilGrad)" />
+      <path d="M18 18 C22 14, 28 15, 29 20 C24 21, 19 21, 18 18 Z" fill="url(#roseFoilGrad)" opacity="0.85" />
+    </svg>
+    <svg class="corner-flourish top-right" viewBox="0 0 60 60" fill="none" aria-hidden="true">
+      <path d="M8 52 C8 22, 22 8, 52 8" stroke="url(#goldFoilGrad)" stroke-width="1.4" stroke-linecap="round" />
+      <path d="M14 44 C16 26, 26 16, 44 14" stroke="url(#roseFoilGrad)" stroke-width="1.1" stroke-linecap="round" />
+      <circle cx="52" cy="8" r="2.5" fill="url(#goldFoilGrad)" />
+      <path d="M18 18 C22 14, 28 15, 29 20 C24 21, 19 21, 18 18 Z" fill="url(#roseFoilGrad)" opacity="0.85" />
+    </svg>
+    <svg class="corner-flourish bottom-left" viewBox="0 0 60 60" fill="none" aria-hidden="true">
+      <path d="M8 52 C8 22, 22 8, 52 8" stroke="url(#goldFoilGrad)" stroke-width="1.4" stroke-linecap="round" />
+      <path d="M14 44 C16 26, 26 16, 44 14" stroke="url(#roseFoilGrad)" stroke-width="1.1" stroke-linecap="round" />
+      <circle cx="52" cy="8" r="2.5" fill="url(#goldFoilGrad)" />
+      <path d="M18 18 C22 14, 28 15, 29 20 C24 21, 19 21, 18 18 Z" fill="url(#roseFoilGrad)" opacity="0.85" />
+    </svg>
+    <svg class="corner-flourish bottom-right" viewBox="0 0 60 60" fill="none" aria-hidden="true">
+      <path d="M8 52 C8 22, 22 8, 52 8" stroke="url(#goldFoilGrad)" stroke-width="1.4" stroke-linecap="round" />
+      <path d="M14 44 C16 26, 26 16, 44 14" stroke="url(#roseFoilGrad)" stroke-width="1.1" stroke-linecap="round" />
+      <circle cx="52" cy="8" r="2.5" fill="url(#goldFoilGrad)" />
+      <path d="M18 18 C22 14, 28 15, 29 20 C24 21, 19 21, 18 18 Z" fill="url(#roseFoilGrad)" opacity="0.85" />
+    </svg>
+
+    <!-- Satin Ribbon Band with Bow Loops & Wax Seal Center -->
     <div class="ribbon-band">
       <div class="ribbon-knot">
         <div class="ribbon-seal">P&amp;A</div>
@@ -625,137 +670,114 @@ footer {
     </div>
 
     <div class="scroll-content">
-      <p class="eyebrow" style="margin-bottom: 12px;">
-        The Wedding Celebration Of
-      </p>
-
-      <h1>Preeti & Aditya</h1>
-
+      <p class="eyebrow" style="margin-bottom: 10px;">The Wedding Celebration Of</p>
+      <h1>Preeti &amp; Aditya</h1>
       <p class="date">04 . 01 . 2027</p>
-
-      <p class="tap-hint">Opening in 2 seconds...</p>
+      <p class="tap-hint">Tap seal to unroll</p>
     </div>
 
     <div class="scroll-rod-bottom"></div>
-
   </div>
 </div>
 
-<!-- AUDIO -->
-
+<!-- Audio -->
 <audio id="weddingMusic" loop preload="auto">
   <source src="./song.mp3" type="audio/mpeg">
 </audio>
 
-<button id="musicToggle" class="paused" aria-label="Play music" aria-pressed="false">♫</button>
+<button id="musicToggle" class="paused" aria-label="Toggle wedding music" aria-pressed="false">♫</button>
 
-<!-- MAIN INVITATION -->
-
+<!-- Main Invitation -->
 <main id="invitation">
 
   <section class="hero fade-in">
     <p class="eyebrow">The Wedding Celebration Of</p>
+    <h1>Preeti <span>&amp;</span> Aditya</h1>
 
-    <h1>Preeti <span>&</span> Aditya</h1>
+    <!-- Gold & Rose Foil Botanical Lotus Divider -->
+    <div class="foil-divider" aria-hidden="true">
+      <svg width="36" height="24" viewBox="0 0 36 24" fill="none">
+        <path d="M18 4 C14 10, 14 16, 18 21 C22 16, 22 10, 18 4 Z" fill="url(#roseFoilGrad)" />
+        <path d="M17 7 C11 9, 7 14, 7 19 C12 19, 16 15, 17 7 Z" fill="url(#goldFoilGrad)" opacity="0.85" />
+        <path d="M19 7 C25 9, 29 14, 29 19 C24 19, 20 15, 19 7 Z" fill="url(#goldFoilGrad)" opacity="0.85" />
+        <circle cx="18" cy="21" r="1.5" fill="url(#goldFoilGrad)" />
+      </svg>
+    </div>
 
-    <div class="hero-divider"></div>
-
-    <p class="date serif">
-      04 . 01 . 2027 &nbsp;|&nbsp; 11:38 AM
-    </p>
-
-    <p class="eyebrow" style="margin-top: 20px;">
-      Vidyadhiraj Bhavan, Hubli
-    </p>
+    <p class="date serif">04 . 01 . 2027 &nbsp;|&nbsp; 11:38 AM</p>
+    <p class="eyebrow" style="margin-top: 20px;">Vidyadhiraj Bhavan, Hubli</p>
   </section>
 
-  <!-- FAMILY DETAILS -->
-
   <div class="parents-section fade-in">
-
     <section style="padding: 0;">
-
-      <h2 class="script" style="font-size: 45px; margin-bottom: 10px;">
-        With Love & Blessings
-      </h2>
-
+      <h2 class="script" style="font-size: 45px; margin-bottom: 6px;">With Love &amp; Blessings</h2>
       <p class="eyebrow">A New Chapter Begins</p>
 
-      <div class="parents-grid">
+      <div class="foil-divider" aria-hidden="true">
+        <svg width="28" height="18" viewBox="0 0 28 18" fill="none">
+          <path d="M14 2 L17 9 L14 16 L11 9 Z" fill="url(#goldFoilGrad)" />
+          <circle cx="6" cy="9" r="2" fill="url(#roseFoilGrad)" />
+          <circle cx="22" cy="9" r="2" fill="url(#roseFoilGrad)" />
+        </svg>
+      </div>
 
+      <div class="parents-grid">
         <div class="parent-block">
           <h3 class="serif">Preeti</h3>
-
-          <p class="eyebrow" style="margin-bottom: 5px;">
-            Daughter of
-          </p>
-
+          <p class="eyebrow" style="margin-bottom: 5px;">Daughter of</p>
           <p class="serif" style="font-size: 16px; color: var(--text-main);">
-            Mr. Prasad Pai<br>&<br>Mrs. Pavitra Pai
+            Mr. Prasad Pai<br>&amp;<br>Mrs. Pavitra Pai
           </p>
         </div>
 
         <div class="parent-block">
           <h3 class="serif">Aditya</h3>
-
-          <p class="eyebrow" style="margin-bottom: 5px;">
-            Son of
-          </p>
-
+          <p class="eyebrow" style="margin-bottom: 5px;">Son of</p>
           <p class="serif" style="font-size: 16px; color: var(--text-main);">
-            Mr. Umesh Bhende<br>&<br>Mrs. Apoorva Bhende
+            Mr. Umesh Bhende<br>&amp;<br>Mrs. Apoorva Bhende
           </p>
         </div>
-
       </div>
     </section>
   </div>
 
-  <!-- COUNTDOWN -->
-
   <section class="countdown fade-in">
-
     <h2 class="section-title">The Countdown</h2>
-
     <p class="eyebrow">Awaiting Our Forever</p>
 
+    <div class="foil-divider" aria-hidden="true">
+      <svg width="24" height="16" viewBox="0 0 24 16" fill="none">
+        <path d="M12 2 C14.5 6, 14.5 10, 12 14 C9.5 10, 9.5 6, 12 2 Z" fill="url(#goldFoilGrad)" />
+      </svg>
+    </div>
+
     <div class="countdown-grid">
-
-      <div class="time-box">
-        <strong id="days">00</strong>
-        <span>DAYS</span>
-      </div>
-
-      <div class="time-box">
-        <strong id="hours">00</strong>
-        <span>HRS</span>
-      </div>
-
-      <div class="time-box">
-        <strong id="minutes">00</strong>
-        <span>MIN</span>
-      </div>
-
-      <div class="time-box">
-        <strong id="seconds">00</strong>
-        <span>SEC</span>
-      </div>
-
+      <div class="time-box"><strong id="days">00</strong><span>DAYS</span></div>
+      <div class="time-box"><strong id="hours">00</strong><span>HRS</span></div>
+      <div class="time-box"><strong id="minutes">00</strong><span>MIN</span></div>
+      <div class="time-box"><strong id="seconds">00</strong><span>SEC</span></div>
     </div>
   </section>
 
-  <!-- EVENTS -->
-
   <section class="events fade-in">
-
     <h2 class="section-title">The Itinerary</h2>
-
     <p class="eyebrow">Four Moments · One Story</p>
 
-    <div class="event-container">
+    <div class="foil-divider" aria-hidden="true">
+      <svg width="32" height="18" viewBox="0 0 32 18" fill="none">
+        <path d="M4 9 C8 4, 13 4, 16 9 C13 14, 8 14, 4 9 Z" stroke="url(#goldFoilGrad)" stroke-width="1.2" fill="url(#roseFoilGrad)" fill-opacity="0.25" />
+        <path d="M28 9 C24 4, 19 4, 16 9 C19 14, 24 14, 28 9 Z" stroke="url(#goldFoilGrad)" stroke-width="1.2" fill="url(#roseFoilGrad)" fill-opacity="0.25" />
+      </svg>
+    </div>
 
+    <div class="event-container">
       <div class="event-card event-haldi">
-        <span class="event-icon">✧</span>
+        <span class="event-icon" aria-hidden="true">
+          <svg width="30" height="30" viewBox="0 0 30 30" fill="none">
+            <circle cx="15" cy="15" r="5" fill="url(#goldFoilGrad)" />
+            <path d="M15 3 L17 9 L15 11 L13 9 Z M15 27 L17 21 L15 19 L13 21 Z M3 15 L9 13 L11 15 L9 17 Z M27 15 L21 13 L19 15 L21 17 Z" fill="url(#goldFoilGrad)" />
+          </svg>
+        </span>
         <h3 class="serif">Haldi</h3>
         <p class="eyebrow">2 January 2027</p>
         <p class="time">11:00 AM</p>
@@ -763,7 +785,13 @@ footer {
       </div>
 
       <div class="event-card event-mehendi">
-        <span class="event-icon">❀</span>
+        <span class="event-icon" aria-hidden="true">
+          <svg width="30" height="30" viewBox="0 0 30 30" fill="none">
+            <path d="M15 5 C11 10, 11 18, 15 25 C19 18, 19 10, 15 5 Z" stroke="url(#goldFoilGrad)" stroke-width="1.3" fill="url(#roseFoilGrad)" fill-opacity="0.3" />
+            <path d="M6 14 C10 12, 13 14, 15 18 C11 19, 8 17, 6 14 Z" fill="url(#goldFoilGrad)" opacity="0.8" />
+            <path d="M24 14 C20 12, 17 14, 15 18 C19 19, 22 17, 24 14 Z" fill="url(#goldFoilGrad)" opacity="0.8" />
+          </svg>
+        </span>
         <h3 class="serif">Mehendi</h3>
         <p class="eyebrow">2 January 2027</p>
         <p class="time">7:00 PM</p>
@@ -771,7 +799,13 @@ footer {
       </div>
 
       <div class="event-card event-sangeet">
-        <span class="event-icon">♪</span>
+        <span class="event-icon" aria-hidden="true">
+          <svg width="30" height="30" viewBox="0 0 30 30" fill="none">
+            <path d="M12 21 V8 L23 6 V19" stroke="url(#goldFoilGrad)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+            <circle cx="9.5" cy="21" r="3" fill="url(#roseFoilGrad)" />
+            <circle cx="20.5" cy="19" r="3" fill="url(#goldFoilGrad)" />
+          </svg>
+        </span>
         <h3 class="serif">Sangeet</h3>
         <p class="eyebrow">3 January 2027</p>
         <p class="time">7:00 PM</p>
@@ -779,54 +813,46 @@ footer {
       </div>
 
       <div class="event-card event-wedding">
-        <span class="event-icon">♡</span>
+        <span class="event-icon" aria-hidden="true">
+          <svg width="30" height="30" viewBox="0 0 30 30" fill="none">
+            <path d="M15 25 C15 25, 5 18.5, 5 11.5 C5 8.2, 7.6 6, 10.6 6 C12.5 6, 14.2 7, 15 8.5 C15.8 7, 17.5 6, 19.4 6 C22.4 6, 25 8.2, 25 11.5 C25 18.5, 15 25, 15 25 Z" stroke="url(#goldFoilGrad)" stroke-width="1.3" fill="url(#roseFoilGrad)" fill-opacity="0.65" />
+          </svg>
+        </span>
         <h3 class="serif">Wedding</h3>
         <p class="eyebrow">4 January 2027</p>
         <p class="time">11:38 AM</p>
         <p>Two souls, one promise, a lifetime together at Vidyadhiraj Bhavan.</p>
       </div>
-
     </div>
   </section>
 
-  <!-- VENUE -->
-
   <section class="venue-section fade-in">
-
     <h2 class="section-title">The Venue</h2>
-
-    <h3 class="serif" style="font-size: 26px; color: var(--accent); margin: 15px 0;">
-      Vidyadhiraj Bhavan
-    </h3>
-
+    <h3 class="serif" style="font-size: 26px; color: var(--accent); margin: 14px 0;">Vidyadhiraj Bhavan</h3>
     <p style="color: var(--text-light); font-size: 13px;">
       Navanagar, Hubli<br>
       Behind Volkswagen Showroom
     </p>
 
-    <a class="map-link"
-       href="https://www.google.com/maps/search/?api=1&query=Vidyadhiraj+Bhavan+Navanagar+Hubli"
-       target="_blank"
-       rel="noopener">
+    <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Vidyadhiraj+Bhavan+Navanagar+Hubli" target="_blank" rel="noopener">
       View Directions
     </a>
-
   </section>
 
-  <!-- CLOSING -->
-
   <section class="closing fade-in" style="max-width: 100%;">
-
-    <p class="eyebrow">
-      We look forward to celebrating with you
-    </p>
-
-    <h2>Preeti & Aditya</h2>
-
+    <p class="eyebrow">We look forward to celebrating with you</p>
+    <h2>Preeti &amp; Aditya</h2>
+    <div class="foil-divider" aria-hidden="true">
+      <svg width="34" height="20" viewBox="0 0 34 20" fill="none">
+        <path d="M17 3 C14 8, 14 13, 17 17 C20 13, 20 8, 17 3 Z" fill="url(#roseFoilGrad)" />
+        <circle cx="9" cy="10" r="2" fill="url(#goldFoilGrad)" />
+        <circle cx="25" cy="10" r="2" fill="url(#goldFoilGrad)" />
+      </svg>
+    </div>
   </section>
 
   <footer>
-    Made with love · Preeti & Aditya · 2027
+    Made with love · Preeti &amp; Aditya · 2027
   </footer>
 
 </main>
@@ -835,7 +861,6 @@ footer {
 
 <script>
 document.addEventListener("DOMContentLoaded", function () {
-
   const welcomeScreen = document.getElementById("welcomeScreen");
   const invitation = document.getElementById("invitation");
   const music = document.getElementById("weddingMusic");
@@ -845,351 +870,182 @@ document.addEventListener("DOMContentLoaded", function () {
   let isOpened = false;
   let autoScrollStopped = false;
   let autoScrollTimer = null;
-  let autoOpenTimer = null;
+  let fallbackOpenTimer = null;
+  const petals = [];
 
-  /* =========================================
-     SCROLL ANIMATIONS
-     ========================================= */
-
-  const fadeElements = document.querySelectorAll(".fade-in");
-  let observer = null;
-
-  if ("IntersectionObserver" in window) {
-
-    observer = new IntersectionObserver((entries) => {
-
-      entries.forEach(entry => {
-
-        if (entry.isIntersecting) {
-          entry.target.classList.add("visible");
-          observer.unobserve(entry.target);
-        }
-
-      });
-
-    }, { threshold: 0.08 });
-
-    fadeElements.forEach(element => observer.observe(element));
-
-  } else {
-
-    fadeElements.forEach(element => {
-      element.classList.add("visible");
+  // Fade-in Section Observer
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
+        observer.unobserve(entry.target);
+      }
     });
+  }, { threshold: 0.1 });
 
-  }
+  document.querySelectorAll(".fade-in").forEach((el) => observer.observe(el));
 
-  /* =========================================
-     FLOATING ROSE PETALS - ORIGINAL 15 PETALS
-     ========================================= */
-
+  // Floating Rose Petals
   function createPetals() {
-
-    for (let i = 0; i < 15; i++) {
-
+    for (let i = 0; i < 14; i++) {
       const petal = document.createElement("div");
-
       petal.classList.add("petal");
-
       petal.style.left = Math.random() * 100 + "vw";
       petal.style.top = "-20px";
-
-      const size = Math.random() * 12 + 10 + "px";
-
+      const size = Math.random() * 11 + 9 + "px";
       petal.style.width = size;
       petal.style.height = size;
-
-      petal.style.animationDuration =
-        Math.random() * 5 + 4 + "s";
-
-      petal.style.animationDelay =
-        Math.random() * 3 + "s";
-
+      petal.style.animationDuration = Math.random() * 5 + 4.5 + "s";
+      petal.style.animationDelay = Math.random() * 2.5 + "s";
       document.body.appendChild(petal);
-
+      petals.push(petal);
     }
-
   }
-
   createPetals();
 
-  /* =========================================
-     MUSIC CONTROLS
-     ========================================= */
-
-  function updateMusicButton() {
-
-    if (!music || !musicToggle) return;
-
-    if (music.paused) {
-
-      musicToggle.textContent = "♫";
-      musicToggle.classList.remove("playing");
-      musicToggle.classList.add("paused");
-
-    } else {
-
-      musicToggle.textContent = "Ⅱ";
-      musicToggle.classList.remove("paused");
-      musicToggle.classList.add("playing");
-
-    }
-
+  function fadeOutPetals() {
+    petals.forEach(petal => {
+      petal.classList.add("fade-out");
+      setTimeout(() => petal.remove(), 900);
+    });
   }
 
-  function playMusic() {
-
-    if (!music) return;
-
-    const playPromise = music.play();
-
-    if (playPromise && typeof playPromise.catch === "function") {
-
-      playPromise
-        .then(updateMusicButton)
-        .catch(updateMusicButton);
-
+  function updateMusicButton() {
+    if (!music || !musicToggle) return;
+    if (music.paused) {
+      musicToggle.textContent = "♫";
+      musicToggle.setAttribute("aria-label", "Play wedding music");
+      musicToggle.setAttribute("aria-pressed", "false");
+    } else {
+      musicToggle.innerHTML = "<span style='font-size:13px;letter-spacing:1px;'>||</span>";
+      musicToggle.setAttribute("aria-label", "Pause wedding music");
+      musicToggle.setAttribute("aria-pressed", "true");
     }
+  }
 
+  async function playMusic() {
+    if (!music) return;
+    try {
+      await music.play();
+    } catch (_) {
+      // Autoplay blocked until direct toggle
+    } finally {
+      updateMusicButton();
+    }
+  }
+
+  function startGentleAutoScroll() {
+    if (autoScrollStopped) return;
+    const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+    if (window.scrollY < maxScroll && !autoScrollStopped) {
+      window.scrollBy({ top: 1, behavior: "auto" });
+      autoScrollTimer = setTimeout(startGentleAutoScroll, 28);
+    }
+  }
+
+  function stopAutoScroll() {
+    autoScrollStopped = true;
+    if (autoScrollTimer) {
+      clearTimeout(autoScrollTimer);
+      autoScrollTimer = null;
+    }
+  }
+
+  ["wheel", "touchstart", "mousedown", "keydown"].forEach(evt => {
+    window.addEventListener(evt, stopAutoScroll, { passive: true });
+  });
+
+  function handleOpenScroll() {
+    if (isOpened) return;
+    isOpened = true;
+    if (fallbackOpenTimer) clearTimeout(fallbackOpenTimer);
+
+    playMusic();
+    updateCountdown();
+    welcomeScreen.classList.add("opening");
+
+    setTimeout(() => {
+      invitation.classList.add("visible");
+      welcomeScreen.classList.add("closed");
+      document.body.style.overflow = "auto";
+      musicToggle.style.display = "flex";
+      fadeOutPetals();
+
+      setTimeout(startGentleAutoScroll, 1500);
+    }, 1350);
+
+    setTimeout(() => {
+      welcomeScreen.style.display = "none";
+    }, 2600);
+  }
+
+  // Gentle automatic unroll after 3.2s if user doesn't tap first
+  fallbackOpenTimer = setTimeout(handleOpenScroll, 3200);
+
+  if (welcomeScreen) {
+    welcomeScreen.addEventListener("click", handleOpenScroll);
+    welcomeScreen.addEventListener("keydown", function (e) {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        handleOpenScroll();
+      }
+    });
   }
 
   if (musicToggle && music) {
-
-    musicToggle.addEventListener("click", function (event) {
-
-      event.stopPropagation();
-
+    musicToggle.addEventListener("click", function (e) {
+      e.stopPropagation();
       if (music.paused) {
         playMusic();
       } else {
         music.pause();
+        updateMusicButton();
       }
-
     });
-
     music.addEventListener("play", updateMusicButton);
     music.addEventListener("pause", updateMusicButton);
     music.addEventListener("ended", updateMusicButton);
-
   }
 
   updateMusicButton();
 
-  /* =========================================
-     GENTLE AUTO SCROLL - ORIGINAL BEHAVIOUR
-     ========================================= */
-
-  function startGentleAutoScroll() {
-
-    if (autoScrollStopped || !isOpened) return;
-
-    const maxScroll = Math.max(
-      0,
-      document.documentElement.scrollHeight - window.innerHeight
-    );
-
-    if (window.scrollY >= maxScroll) return;
-
-    window.scrollBy(0, 1);
-
-    autoScrollTimer = window.setTimeout(
-      startGentleAutoScroll,
-      25
-    );
-
-  }
-
-  function stopAutoScroll() {
-
-    autoScrollStopped = true;
-
-    if (autoScrollTimer !== null) {
-
-      window.clearTimeout(autoScrollTimer);
-      autoScrollTimer = null;
-
-    }
-
-  }
-
-  ["wheel", "touchstart", "mousedown", "keydown"].forEach(eventName => {
-
-    window.addEventListener(
-      eventName,
-      stopAutoScroll,
-      { passive: true }
-    );
-
-  });
-
-  /* =========================================
-     OPEN WEDDING INVITATION - FIXED
-     ========================================= */
-
-  function handleOpenScroll() {
-
-    if (isOpened || !welcomeScreen || !invitation) return;
-
-    isOpened = true;
-
-    if (autoOpenTimer !== null) {
-      window.clearTimeout(autoOpenTimer);
-    }
-
-    // Start original opening animation.
-    welcomeScreen.classList.add("opening");
-
-    // Attempt to play music after visitor interaction.
-    playMusic();
-
-    // Reveal the main invitation.
-    invitation.classList.add("visible");
-
-    // Restore normal scrolling.
-    document.body.style.overflowX = "hidden";
-    document.body.style.overflowY = "auto";
-
-    // Show music button.
-    if (musicToggle) {
-      musicToggle.style.display = "flex";
-    }
-
-    // Fade out welcome screen.
-    window.setTimeout(function () {
-
-      welcomeScreen.classList.add("closed");
-
-    }, 250);
-
-    // Remove welcome screen after transition.
-    window.setTimeout(function () {
-
-      welcomeScreen.style.display = "none";
-
-    }, 1900);
-
-    // Re-observe sections after invitation becomes visible.
-    if (observer) {
-
-      fadeElements.forEach(element => {
-        observer.observe(element);
-      });
-
-    }
-
-    // Retain original gentle automatic scrolling.
-    window.setTimeout(startGentleAutoScroll, 1500);
-
-  }
-
-  // Open by clicking or tapping.
-  if (welcomeScreen) {
-
-    welcomeScreen.addEventListener(
-      "click",
-      handleOpenScroll
-    );
-
-    welcomeScreen.addEventListener("keydown", function (event) {
-
-      if (event.key === "Enter" || event.key === " ") {
-
-        event.preventDefault();
-        handleOpenScroll();
-
-      }
-
-    });
-
-  }
-
-  // Automatically open after two seconds.
-  autoOpenTimer = window.setTimeout(
-    handleOpenScroll,
-    2000
-  );
-
-  /* =========================================
-     WEDDING COUNTDOWN
-     ========================================= */
-
   function updateCountdown() {
-
-    const weddingDate =
-      new Date("2027-01-04T11:38:00+05:30").getTime();
-
+    const weddingDate = new Date("2027-01-04T11:38:00+05:30").getTime();
     const difference = weddingDate - Date.now();
 
-    const days = document.getElementById("days");
-    const hours = document.getElementById("hours");
-    const minutes = document.getElementById("minutes");
-    const seconds = document.getElementById("seconds");
-
-    if (!days || !hours || !minutes || !seconds) return;
+    const elements = {
+      days: document.getElementById("days"),
+      hours: document.getElementById("hours"),
+      minutes: document.getElementById("minutes"),
+      seconds: document.getElementById("seconds")
+    };
 
     if (difference <= 0) {
-
-      days.textContent = "00";
-      hours.textContent = "00";
-      minutes.textContent = "00";
-      seconds.textContent = "00";
-
+      Object.values(elements).forEach(el => { if (el) el.textContent = "00"; });
       return;
-
     }
 
-    days.textContent = Math.floor(
-      difference / (1000 * 60 * 60 * 24)
-    );
-
-    hours.textContent = String(
-      Math.floor((difference / (1000 * 60 * 60)) % 24)
-    ).padStart(2, "0");
-
-    minutes.textContent = String(
-      Math.floor((difference / (1000 * 60)) % 60)
-    ).padStart(2, "0");
-
-    seconds.textContent = String(
-      Math.floor((difference / 1000) % 60)
-    ).padStart(2, "0");
-
+    if (elements.days) elements.days.textContent = Math.floor(difference / (1000 * 60 * 60 * 24));
+    if (elements.hours) elements.hours.textContent = String(Math.floor((difference / (1000 * 60 * 60)) % 24)).padStart(2, "0");
+    if (elements.minutes) elements.minutes.textContent = String(Math.floor((difference / (1000 * 60)) % 60)).padStart(2, "0");
+    if (elements.seconds) elements.seconds.textContent = String(Math.floor((difference / 1000) % 60)).padStart(2, "0");
   }
 
   updateCountdown();
-
-  window.setInterval(updateCountdown, 1000);
-
-  /* =========================================
-     BACK TO TOP
-     ========================================= */
+  setInterval(updateCountdown, 1000);
 
   window.addEventListener("scroll", function () {
-
     if (backTop) {
-
-      backTop.style.display =
-        window.scrollY > 500 ? "block" : "none";
-
+      backTop.style.display = window.scrollY > 500 ? "block" : "none";
     }
-
-  }, { passive: true });
+  });
 
   if (backTop) {
-
     backTop.addEventListener("click", function () {
-
       stopAutoScroll();
-
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-      });
-
+      window.scrollTo({ top: 0, behavior: "smooth" });
     });
-
   }
-
 });
 </script>
 
