@@ -117,8 +117,7 @@ h1, h2, h3, .serif {
    ========================================= */
 #petalsLayer {
   position: fixed;
-  top: 0;
-  left: 0;
+  inset: 0;
   width: 100vw;
   height: 100vh;
   pointer-events: none;
@@ -128,31 +127,27 @@ h1, h2, h3, .serif {
 
 .petal {
   position: absolute;
-  top: -30px;
-  background: linear-gradient(135deg, #f5b9bc, #d97c82);
+  top: 0;
+  background: radial-gradient(circle at 30% 30%, #f7b5b9 0%, #df7a81 70%, #c8646c 100%);
+  border: 1px solid rgba(212, 165, 92, 0.35);
   border-radius: 150% 0 150% 0;
   pointer-events: none;
-  box-shadow: 0 2px 6px rgba(181, 108, 110, 0.15);
+  box-shadow: 0 3px 8px rgba(181, 108, 110, 0.22);
+  will-change: transform, opacity;
 }
 
 @keyframes fallPetal {
   0% {
-    transform: translate3d(0px, -20px, 0) rotate(0deg);
-    opacity: 0;
-  }
-  12% {
-    opacity: 0.82;
+    transform: translate3d(0px, -30px, 0) rotate(0deg);
+    opacity: 0.9;
   }
   50% {
-    transform: translate3d(22px, 50vh, 0) rotate(180deg);
-    opacity: 0.78;
-  }
-  88% {
-    opacity: 0.72;
+    transform: translate3d(26px, 50vh, 0) rotate(180deg);
+    opacity: 0.88;
   }
   100% {
-    transform: translate3d(-18px, 105vh, 0) rotate(360deg);
-    opacity: 0;
+    transform: translate3d(-20px, 106vh, 0) rotate(360deg);
+    opacity: 0.85;
   }
 }
 
@@ -911,22 +906,23 @@ document.addEventListener("DOMContentLoaded", function () {
 
   document.querySelectorAll('.fade-in').forEach((el) => observer.observe(el));
 
-  // Continuous Falling Rose Petals Effect
+  // Continuous Falling Rose Petals Effect (Pre-staggered negative delays so petals are mid-air immediately)
   function createPetals() {
     if (!petalsLayer) return;
     petalsLayer.innerHTML = "";
-    for (let i = 0; i < 16; i++) {
+    const count = 24;
+    for (let i = 0; i < count; i++) {
       const petal = document.createElement('div');
       petal.classList.add('petal');
-      const leftPos = (i * 6 + Math.random() * 4).toFixed(1);
-      const size = Math.round(Math.random() * 11 + 11);
-      const duration = (Math.random() * 4 + 5).toFixed(2);
-      const delay = (Math.random() * 2.5).toFixed(2);
+      const leftPos = ((i / count) * 94 + Math.random() * 4).toFixed(1);
+      const size = Math.round(Math.random() * 10 + 14); // 14px to 24px
+      const duration = (Math.random() * 4 + 5.5).toFixed(2); // 5.5s to 9.5s
+      const negDelay = (-Math.random() * parseFloat(duration)).toFixed(2);
 
       petal.style.left = leftPos + 'vw';
       petal.style.width = size + 'px';
       petal.style.height = Math.round(size * 0.85) + 'px';
-      petal.style.animation = `fallPetal ${duration}s linear ${delay}s infinite`;
+      petal.style.animation = `fallPetal ${duration}s linear ${negDelay}s infinite`;
       petalsLayer.appendChild(petal);
     }
   }
