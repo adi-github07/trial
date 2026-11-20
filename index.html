@@ -1,0 +1,1069 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Preeti & Aditya | Wedding Invitation</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Great+Vibes&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+:root {
+  --royal-red: #6e1217;
+  --royal-red-deep: #49090d;
+  --royal-red-light: #8d1c22;
+  --cream-bg: #fbf5ee;
+  --cream-surface: #fffdf9;
+  --champagne-gold: #dfc078;
+  --antique-gold: #c49a45;
+  --gold-bright: #f0d798;
+  --text-main: #4a1216;
+  --text-muted: #7a4b4e;
+  --border-gold: rgba(196, 154, 69, 0.35);
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: var(--cream-bg);
+  color: var(--text-main);
+  overflow: hidden;
+  line-height: 1.8;
+}
+
+button {
+  cursor: pointer;
+  font-family: inherit;
+}
+
+h1, h2, h3, .serif {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 500;
+}
+
+.royal-cap {
+  font-family: 'Cinzel', serif;
+}
+
+.script {
+  font-family: 'Great Vibes', cursive;
+  color: var(--royal-red);
+  font-weight: 400;
+}
+
+.eyebrow {
+  font-size: 11px;
+  letter-spacing: 3.5px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  font-weight: 400;
+}
+
+/* =========================================
+   ROYAL INTRO CARD WELCOME SCREEN
+   ========================================= */
+#welcomeScreen {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: radial-gradient(circle at center, #3c070b 0%, #210305 100%);
+  cursor: pointer;
+  transition: opacity 1.3s cubic-bezier(0.22, 1, 0.36, 1), visibility 1.3s ease;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  overflow-y: auto;
+}
+
+#welcomeScreen.opening {
+  opacity: 0;
+  transform: scale(1.04);
+  pointer-events: none;
+}
+
+#welcomeScreen.closed {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.intro-card {
+  position: relative;
+  width: min(600px, 95vw);
+  background: linear-gradient(165deg, var(--royal-red-light) 0%, var(--royal-red) 45%, var(--royal-red-deep) 100%);
+  color: var(--cream-surface);
+  border-radius: 8px;
+  padding: 44px 36px;
+  text-align: center;
+  box-shadow:
+    0 30px 70px rgba(0, 0, 0, 0.55),
+    0 0 0 1px rgba(223, 192, 120, 0.45),
+    inset 0 0 45px rgba(20, 2, 4, 0.45);
+  transition: transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+  margin: auto;
+}
+
+/* Ornate Double Gold Frame */
+.intro-card::before {
+  content: '';
+  position: absolute;
+  inset: 12px;
+  border: 1.5px solid rgba(223, 192, 120, 0.72);
+  border-radius: 4px;
+  pointer-events: none;
+}
+
+.intro-card::after {
+  content: '';
+  position: absolute;
+  inset: 17px;
+  border: 1px solid rgba(223, 192, 120, 0.32);
+  border-radius: 3px;
+  pointer-events: none;
+}
+
+.intro-invocation {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: clamp(16px, 2.8vw, 20px);
+  letter-spacing: 1px;
+  color: var(--gold-bright);
+  margin-bottom: 10px;
+}
+
+.intro-parents-top {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(18px, 3vw, 22px);
+  color: var(--cream-surface);
+  font-weight: 500;
+  margin-bottom: 6px;
+}
+
+.intro-parents-top em {
+  font-style: italic;
+  color: var(--champagne-gold);
+}
+
+.intro-invite-line {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: clamp(14px, 2.3vw, 16px);
+  color: rgba(255, 253, 249, 0.86);
+  max-width: 440px;
+  margin: 0 auto 18px;
+  line-height: 1.5;
+}
+
+.gold-rule {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin: 14px auto;
+  max-width: 280px;
+}
+
+.gold-rule::before,
+.gold-rule::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--champagne-gold), transparent);
+}
+
+.gold-rule span {
+  color: var(--gold-bright);
+  font-size: 13px;
+  letter-spacing: 2px;
+}
+
+.intro-couple {
+  margin: 10px 0 14px;
+  line-height: 1.15;
+}
+
+.intro-title-prefix {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 15px;
+  color: var(--champagne-gold);
+  margin-right: 6px;
+}
+
+.intro-name {
+  font-family: 'Great Vibes', cursive;
+  font-size: clamp(46px, 9vw, 68px);
+  color: var(--gold-bright);
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.35);
+  display: inline-block;
+  line-height: 1.05;
+}
+
+.intro-with {
+  display: block;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 16px;
+  color: var(--champagne-gold);
+  margin: 4px 0 2px;
+}
+
+.intro-groom-line {
+  display: inline-flex;
+  align-items: baseline;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.intro-groom-son {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: clamp(14px, 2.3vw, 16px);
+  color: rgba(255, 253, 249, 0.88);
+  margin-top: 6px;
+  display: block;
+}
+
+.intro-pill-banner {
+  display: inline-block;
+  margin: 16px auto 14px;
+  padding: 6px 26px;
+  border-top: 1px solid rgba(223, 192, 120, 0.65);
+  border-bottom: 1px solid rgba(223, 192, 120, 0.65);
+  background: rgba(255, 253, 249, 0.06);
+  font-family: 'Cinzel', serif;
+  font-size: 12px;
+  letter-spacing: 3.5px;
+  color: var(--gold-bright);
+  text-transform: uppercase;
+}
+
+.intro-details-grid {
+  display: grid;
+  grid-template-columns: 1fr 1px 1fr;
+  align-items: center;
+  gap: 14px;
+  max-width: 490px;
+  margin: 0 auto 8px;
+  text-align: center;
+}
+
+.intro-divider-v {
+  height: 58px;
+  background: rgba(223, 192, 120, 0.45);
+}
+
+.intro-detail-col p {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(13px, 2.2vw, 15px);
+  line-height: 1.45;
+  color: var(--cream-surface);
+}
+
+.intro-detail-col strong {
+  font-weight: 600;
+  color: var(--gold-bright);
+  letter-spacing: 0.8px;
+}
+
+.intro-blessings {
+  margin-top: 18px;
+  font-family: 'Great Vibes', cursive;
+  font-size: clamp(24px, 4.5vw, 30px);
+  color: var(--gold-bright);
+}
+
+.tap-hint {
+  margin-top: 14px;
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--champagne-gold);
+  animation: pulseHint 2.2s infinite ease-in-out;
+}
+
+@keyframes pulseHint {
+  0%, 100% { opacity: 0.45; }
+  50% { opacity: 1; }
+}
+
+/* Floating Gold & Rose Petals Animation */
+.petal {
+  position: fixed;
+  border-radius: 150% 0 150% 0;
+  opacity: 0.75;
+  animation: fallPetal linear infinite;
+  z-index: 999;
+  pointer-events: none;
+}
+
+@keyframes fallPetal {
+  0% { transform: translateY(-10vh) rotate(0deg); opacity: 0; }
+  15% { opacity: 0.8; }
+  100% { transform: translateY(105vh) rotate(360deg); opacity: 0; }
+}
+
+/* =========================================
+   MAIN INVITATION LAYOUT
+   ========================================= */
+#invitation {
+  opacity: 0;
+  transform: translateY(20px);
+  visibility: hidden;
+  transition: opacity 1.4s cubic-bezier(0.22, 1, 0.36, 1), transform 1.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+#invitation.visible {
+  opacity: 1;
+  transform: translateY(0);
+  visibility: visible;
+}
+
+section {
+  padding: 95px 20px;
+  text-align: center;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.hero {
+  min-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle at center, var(--cream-surface) 0%, transparent 72%);
+}
+
+.hero-invocation {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 18px;
+  color: var(--royal-red);
+  margin-bottom: 14px;
+  letter-spacing: 0.8px;
+}
+
+.hero-divider {
+  width: 1px;
+  height: 55px;
+  background: linear-gradient(to bottom, transparent, var(--antique-gold), transparent);
+  margin: 26px auto;
+}
+
+.hero h1 {
+  font-size: clamp(44px, 8vw, 72px);
+  letter-spacing: 1.5px;
+  margin: 16px 0;
+  line-height: 1.25;
+  color: var(--royal-red);
+}
+
+.hero h1 span {
+  font-family: 'Great Vibes', cursive;
+  color: var(--antique-gold);
+  font-size: 1.25em;
+  padding: 0 14px;
+  font-weight: 400;
+}
+
+.hero .date {
+  font-size: 18px;
+  letter-spacing: 3px;
+  margin-top: 12px;
+  color: var(--text-main);
+}
+
+.parents-section {
+  background: var(--cream-surface);
+  padding: 85px 20px;
+  border-top: 1px solid var(--border-gold);
+  border-bottom: 1px solid var(--border-gold);
+}
+
+.section-title {
+  font-size: clamp(36px, 6vw, 48px);
+  color: var(--royal-red);
+  margin-bottom: 10px;
+}
+
+.parents-grid {
+  display: flex;
+  justify-content: center;
+  gap: 80px;
+  margin-top: 48px;
+  flex-wrap: wrap;
+}
+
+.parent-block h3 {
+  font-size: 30px;
+  color: var(--royal-red);
+  margin-bottom: 8px;
+}
+
+.countdown-grid {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-top: 40px;
+}
+
+.time-box {
+  width: 92px;
+  padding: 20px 0;
+  background: var(--cream-surface);
+  border: 1px solid var(--border-gold);
+  border-radius: 6px;
+  box-shadow: 0 8px 24px rgba(110, 18, 23, 0.06);
+}
+
+.time-box strong {
+  display: block;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 34px;
+  color: var(--royal-red);
+  font-weight: 600;
+  line-height: 1;
+}
+
+.time-box span {
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: var(--text-muted);
+  margin-top: 8px;
+  display: block;
+}
+
+.event-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 26px;
+  margin-top: 48px;
+}
+
+.event-card {
+  padding: 44px 26px;
+  border-radius: 8px;
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+  position: relative;
+  border: 1px solid transparent;
+  box-shadow: 0 10px 24px rgba(74, 18, 22, 0.05);
+}
+
+.event-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 32px rgba(74, 18, 22, 0.1);
+}
+
+.event-icon {
+  font-family: 'Great Vibes', cursive;
+  font-size: 36px;
+  margin-bottom: 12px;
+  display: block;
+}
+
+.event-card h3 {
+  font-size: 25px;
+  margin-bottom: 8px;
+  letter-spacing: 0.5px;
+}
+
+.event-card .time {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-weight: 600;
+  margin: 8px 0 12px;
+  font-size: 18px;
+}
+
+.event-card p {
+  font-size: 12.5px;
+  color: var(--text-muted);
+}
+
+.event-haldi {
+  background: linear-gradient(155deg, #fffdf4, #faecc0);
+  border-color: #e6cb78;
+}
+.event-haldi h3, .event-haldi .event-icon, .event-haldi .time { color: #9c7406; }
+
+.event-mehendi {
+  background: linear-gradient(155deg, #f3faf3, #d9eed9);
+  border-color: #a8d2a8;
+}
+.event-mehendi h3, .event-mehendi .event-icon, .event-mehendi .time { color: #3f783f; }
+
+.event-sangeet {
+  background: linear-gradient(155deg, #f8f3fc, #e7d8f2);
+  border-color: #c5add9;
+}
+.event-sangeet h3, .event-sangeet .event-icon, .event-sangeet .time { color: #674487; }
+
+.event-wedding {
+  background: linear-gradient(155deg, #fff4f4, #fad1cf);
+  border-color: #e3a7a4;
+}
+.event-wedding h3, .event-wedding .event-icon, .event-wedding .time { color: var(--royal-red); }
+
+.venue-section {
+  border-top: 1px solid var(--border-gold);
+  padding: 95px 20px;
+}
+
+.venue-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 32px;
+  margin-top: 44px;
+}
+
+.venue-card {
+  background: var(--cream-surface);
+  border: 1px solid var(--border-gold);
+  border-radius: 8px;
+  padding: 36px 26px;
+  box-shadow: 0 10px 25px rgba(110, 18, 23, 0.05);
+}
+
+.venue-card h3 {
+  font-size: 26px;
+  color: var(--royal-red);
+  margin: 8px 0 6px;
+}
+
+.map-link {
+  display: inline-block;
+  margin-top: 22px;
+  padding: 12px 28px;
+  color: var(--royal-red);
+  border: 1px solid var(--royal-red);
+  border-radius: 4px;
+  text-decoration: none;
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  transition: all 0.35s ease;
+}
+
+.map-link:hover {
+  background: var(--royal-red);
+  color: var(--cream-surface);
+}
+
+.closing {
+  padding: 110px 20px 80px;
+  background: linear-gradient(165deg, var(--royal-red-light), var(--royal-red-deep));
+  color: var(--cream-surface);
+  border-top: 2px solid var(--antique-gold);
+}
+
+.closing .eyebrow {
+  color: var(--champagne-gold);
+}
+
+.closing h2 {
+  font-family: 'Great Vibes', cursive;
+  font-size: clamp(52px, 8vw, 74px);
+  color: var(--gold-bright);
+  font-weight: 400;
+  margin-top: 8px;
+}
+
+.closing-blessing {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 20px;
+  color: var(--champagne-gold);
+  margin-top: 8px;
+}
+
+#musicToggle {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  z-index: 500;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 1px solid var(--antique-gold);
+  background: var(--cream-surface);
+  color: var(--royal-red);
+  font-size: 20px;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 20px rgba(74, 18, 22, 0.18);
+  transition: all 0.3s ease;
+}
+
+#musicToggle:hover {
+  background: var(--royal-red);
+  color: var(--gold-bright);
+}
+
+#backTop {
+  display: none;
+  position: fixed;
+  bottom: 95px;
+  right: 30px;
+  z-index: 500;
+  background: var(--royal-red);
+  color: var(--gold-bright);
+  border: 1px solid var(--antique-gold);
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  font-size: 18px;
+  transition: 0.3s;
+  box-shadow: 0 6px 16px rgba(74, 18, 22, 0.22);
+}
+
+#backTop:hover {
+  background: var(--royal-red-deep);
+}
+
+footer {
+  padding: 28px;
+  text-align: center;
+  font-size: 11px;
+  color: var(--text-muted);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  background: var(--cream-bg);
+  border-top: 1px solid var(--border-gold);
+}
+
+.fade-in {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 1s ease, transform 1s ease;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media(max-width: 600px) {
+  .intro-card { padding: 34px 22px; }
+  .intro-details-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .intro-divider-v {
+    width: 120px;
+    height: 1px;
+    margin: 0 auto;
+  }
+  section { padding: 72px 20px; }
+  .parents-grid { gap: 40px; flex-direction: column; }
+  .time-box { width: 74px; padding: 15px 0; }
+  .time-box strong { font-size: 26px; }
+  .event-container { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- Royal Crimson & Gold Intro Card -->
+<div id="welcomeScreen" role="button" tabindex="0" aria-label="Open wedding invitation">
+  <div class="intro-card">
+    <p class="intro-invocation">|| Shree Mahalasa Narayani Prassanna ||</p>
+
+    <p class="intro-parents-top">
+      Mrs. Pavitra <em>and</em> Mr. Prasad Pai, <em>Hubli</em>
+    </p>
+    <p class="intro-invite-line">
+      Cordially invite you with your family on the auspicious occasion of the Wedding Ceremony of our daughter
+    </p>
+
+    <div class="gold-rule"><span>✦</span></div>
+
+    <div class="intro-couple">
+      <div>
+        <span class="intro-title-prefix">Chi. Kum. Sou.</span>
+        <span class="intro-name">Preeti</span>
+      </div>
+      <span class="intro-with">With</span>
+      <div class="intro-groom-line">
+        <span class="intro-title-prefix">Chi.</span>
+        <span class="intro-name">Aditya</span>
+      </div>
+      <span class="intro-groom-son">
+        Son of Mrs. Apoorva and Mr. Umesh Bhende, <em>Dandeli</em>
+      </span>
+    </div>
+
+    <div class="gold-rule"><span>✦</span></div>
+
+    <div class="intro-pill-banner">Wedding Ceremony</div>
+    <div class="intro-details-grid">
+      <div class="intro-detail-col">
+        <p>
+          <strong>JANUARY</strong><br>
+          <strong>4<sup>th</sup>, MONDAY, 2027</strong><br>
+          MUHURTH – 11:38 AM
+        </p>
+      </div>
+      <div class="intro-divider-v"></div>
+      <div class="intro-detail-col">
+        <p>
+          <strong>Vidyadhiraj Bhavan</strong><br>
+          <em>Opposite APMC, Amargol,<br>Hubli</em>
+        </p>
+      </div>
+    </div>
+
+    <div class="intro-pill-banner">Reception</div>
+    <div class="intro-details-grid">
+      <div class="intro-detail-col">
+        <p>
+          <strong>JANUARY</strong><br>
+          <strong>17<sup>th</sup>, SUNDAY, 2027</strong><br>
+          FROM 12:00 PM ONWARDS
+        </p>
+      </div>
+      <div class="intro-divider-v"></div>
+      <div class="intro-detail-col">
+        <p>
+          <strong>Dwarakanath Bhavan</strong><br>
+          <em>KR Road,<br>Basavanagudi, Bangalore</em>
+        </p>
+      </div>
+    </div>
+
+    <p class="intro-blessings">Presents in Blessings only</p>
+    <p class="tap-hint">Tap anywhere to enter</p>
+  </div>
+</div>
+
+<!-- Audio -->
+<audio id="weddingMusic" loop preload="auto">
+  <source src="./song.mp3" type="audio/mpeg">
+</audio>
+
+<button id="musicToggle" class="paused" aria-label="Play music" aria-pressed="false">♫</button>
+
+<!-- Main Invitation -->
+<main id="invitation">
+
+  <section class="hero fade-in">
+    <p class="hero-invocation">|| Shree Mahalasa Narayani Prassanna ||</p>
+    <p class="eyebrow">The Wedding Celebration Of</p>
+    <h1>Preeti <span>&amp;</span> Aditya</h1>
+    <div class="hero-divider"></div>
+    <p class="date serif">04 . 01 . 2027 &nbsp;|&nbsp; 11:38 AM</p>
+    <p class="eyebrow" style="margin-top: 18px;">Vidyadhiraj Bhavan, Hubli</p>
+  </section>
+
+  <div class="parents-section fade-in">
+    <section style="padding: 0;">
+      <h2 class="script" style="font-size: 46px; margin-bottom: 8px;">With Love &amp; Blessings</h2>
+      <p class="eyebrow">A New Chapter Begins</p>
+
+      <div class="parents-grid">
+        <div class="parent-block">
+          <h3 class="serif">Preeti</h3>
+          <p class="eyebrow" style="margin-bottom: 6px;">Daughter of</p>
+          <p class="serif" style="font-size: 18px; color: var(--text-main);">
+            Mrs. Pavitra &amp; Mr. Prasad Pai<br>
+            <span style="font-style: italic; font-size: 15px; color: var(--text-muted);">Hubli</span>
+          </p>
+        </div>
+
+        <div class="parent-block">
+          <h3 class="serif">Aditya</h3>
+          <p class="eyebrow" style="margin-bottom: 6px;">Son of</p>
+          <p class="serif" style="font-size: 18px; color: var(--text-main);">
+            Mrs. Apoorva &amp; Mr. Umesh Bhende<br>
+            <span style="font-style: italic; font-size: 15px; color: var(--text-muted);">Dandeli</span>
+          </p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <section class="countdown fade-in">
+    <h2 class="section-title">The Countdown</h2>
+    <p class="eyebrow">Awaiting Our Forever</p>
+
+    <div class="countdown-grid">
+      <div class="time-box"><strong id="days">00</strong><span>DAYS</span></div>
+      <div class="time-box"><strong id="hours">00</strong><span>HRS</span></div>
+      <div class="time-box"><strong id="minutes">00</strong><span>MIN</span></div>
+      <div class="time-box"><strong id="seconds">00</strong><span>SEC</span></div>
+    </div>
+  </section>
+
+  <section class="events fade-in">
+    <h2 class="section-title">The Itinerary</h2>
+    <p class="eyebrow">Four Moments · One Story</p>
+
+    <div class="event-container">
+      <div class="event-card event-haldi">
+        <span class="event-icon">✧</span>
+        <h3 class="serif">Haldi</h3>
+        <p class="eyebrow">2 January 2027</p>
+        <p class="time">11:00 AM</p>
+        <p>A morning of traditions, laughter, and blessings to start our journey.</p>
+      </div>
+
+      <div class="event-card event-mehendi">
+        <span class="event-icon">❀</span>
+        <h3 class="serif">Mehendi</h3>
+        <p class="eyebrow">2 January 2027</p>
+        <p class="time">7:00 PM</p>
+        <p>An intimate evening of beautiful henna patterns and celebration.</p>
+      </div>
+
+      <div class="event-card event-sangeet">
+        <span class="event-icon">♪</span>
+        <h3 class="serif">Sangeet</h3>
+        <p class="eyebrow">3 January 2027</p>
+        <p class="time">7:00 PM</p>
+        <p>Music, dance, and unforgettable memories at Vidyadhiraj Bhavan.</p>
+      </div>
+
+      <div class="event-card event-wedding">
+        <span class="event-icon">♡</span>
+        <h3 class="serif">Wedding</h3>
+        <p class="eyebrow">4 January 2027</p>
+        <p class="time">11:38 AM</p>
+        <p>Two souls, one promise, a lifetime together at Vidyadhiraj Bhavan.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="venue-section fade-in">
+    <h2 class="section-title">The Venues</h2>
+    <p class="eyebrow">Wedding &amp; Reception</p>
+
+    <div class="venue-grid">
+      <div class="venue-card">
+        <p class="eyebrow">Wedding · 4 Jan 2027</p>
+        <h3>Vidyadhiraj Bhavan</h3>
+        <p style="color: var(--text-muted); font-size: 13px;">
+          Opposite APMC, Amargol, Hubli
+        </p>
+        <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Vidyadhiraj+Bhavan+Amargol+Hubli" target="_blank" rel="noopener">
+          View Directions
+        </a>
+      </div>
+
+      <div class="venue-card">
+        <p class="eyebrow">Reception · 17 Jan 2027</p>
+        <h3>Dwarakanath Bhavan</h3>
+        <p style="color: var(--text-muted); font-size: 13px;">
+          KR Road, Basavanagudi, Bangalore
+        </p>
+        <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Dwarakanath+Bhavan+KR+Road+Basavanagudi+Bangalore" target="_blank" rel="noopener">
+          View Directions
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="closing fade-in" style="max-width: 100%;">
+    <p class="eyebrow">We look forward to celebrating with you</p>
+    <h2>Preeti &amp; Aditya</h2>
+    <p class="closing-blessing">Presents in Blessings only</p>
+  </section>
+
+  <footer>
+    Made with love · Preeti &amp; Aditya · 2027
+  </footer>
+
+</main>
+
+<button id="backTop" aria-label="Back to top">↑</button>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+  const welcomeScreen = document.getElementById("welcomeScreen");
+  const invitation = document.getElementById("invitation");
+  const music = document.getElementById("weddingMusic");
+  const musicToggle = document.getElementById("musicToggle");
+
+  let isOpened = false;
+  let autoScrollStopped = false;
+  let autoScrollTimer = null;
+
+  // Scroll Animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fade-in').forEach((el) => observer.observe(el));
+
+  // Floating Gold & Rose Petals Effect
+  function createPetals() {
+    const colors = ['#e6c27a', '#d98a8e', '#f0d798'];
+    for (let i = 0; i < 16; i++) {
+      const petal = document.createElement('div');
+      petal.classList.add('petal');
+      petal.style.left = Math.random() * 100 + 'vw';
+      petal.style.top = '-20px';
+      petal.style.background = colors[i % colors.length];
+      const size = Math.random() * 11 + 9 + 'px';
+      petal.style.width = size;
+      petal.style.height = size;
+      petal.style.animationDuration = Math.random() * 5 + 5 + 's';
+      petal.style.animationDelay = Math.random() * 3 + 's';
+      document.body.appendChild(petal);
+    }
+  }
+  createPetals();
+
+  function updateMusicButton() {
+    if (!music || !musicToggle) return;
+    if (music.paused) {
+      musicToggle.textContent = "♫";
+      musicToggle.classList.remove("playing");
+      musicToggle.classList.add("paused");
+      musicToggle.setAttribute("aria-pressed", "false");
+    } else {
+      musicToggle.innerHTML = "<span style='font-size:14px;'>||</span>";
+      musicToggle.classList.remove("paused");
+      musicToggle.classList.add("playing");
+      musicToggle.setAttribute("aria-pressed", "true");
+    }
+  }
+
+  async function playMusic() {
+    if (!music) return;
+    try {
+      await music.play();
+      updateMusicButton();
+    } catch (error) {
+      updateMusicButton();
+    }
+  }
+
+  function startGentleAutoScroll() {
+    if (autoScrollStopped) return;
+    const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+    if (window.scrollY < maxScroll && !autoScrollStopped) {
+      window.scrollBy({ top: 1, behavior: 'auto' });
+      autoScrollTimer = setTimeout(startGentleAutoScroll, 25);
+    }
+  }
+
+  function stopAutoScroll() {
+    autoScrollStopped = true;
+    if (autoScrollTimer) clearTimeout(autoScrollTimer);
+  }
+
+  window.addEventListener("wheel", stopAutoScroll, { passive: true });
+  window.addEventListener("touchstart", stopAutoScroll, { passive: true });
+  window.addEventListener("mousedown", stopAutoScroll, { passive: true });
+  window.addEventListener("keydown", stopAutoScroll, { passive: true });
+
+  function handleOpenCard() {
+    if (isOpened) return;
+    isOpened = true;
+
+    playMusic();
+    updateCountdown();
+
+    welcomeScreen.classList.add("opening");
+
+    setTimeout(function () {
+      invitation.classList.add("visible");
+      welcomeScreen.classList.add("closed");
+      document.body.style.overflow = "auto";
+      musicToggle.style.display = "flex";
+
+      setTimeout(startGentleAutoScroll, 1500);
+    }, 900);
+
+    setTimeout(function () {
+      welcomeScreen.style.display = "none";
+    }, 1800);
+  }
+
+  if (welcomeScreen) {
+    welcomeScreen.addEventListener("click", handleOpenCard);
+    welcomeScreen.addEventListener("keydown", function (e) {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        handleOpenCard();
+      }
+    });
+  }
+
+  if (musicToggle && music) {
+    musicToggle.addEventListener("click", function (e) {
+      e.stopPropagation();
+      if (music.paused) playMusic();
+      else { music.pause(); updateMusicButton(); }
+    });
+    music.addEventListener("play", updateMusicButton);
+    music.addEventListener("pause", updateMusicButton);
+    music.addEventListener("ended", updateMusicButton);
+  }
+
+  updateMusicButton();
+
+  function updateCountdown() {
+    const weddingDate = new Date("2027-01-04T11:38:00+05:30").getTime();
+    const now = Date.now();
+    const difference = weddingDate - now;
+
+    const elements = {
+      days: document.getElementById("days"),
+      hours: document.getElementById("hours"),
+      minutes: document.getElementById("minutes"),
+      seconds: document.getElementById("seconds")
+    };
+
+    if (difference <= 0) {
+      Object.values(elements).forEach(el => el.textContent = "00");
+      return;
+    }
+
+    elements.days.textContent = Math.floor(difference / (1000 * 60 * 60 * 24));
+    elements.hours.textContent = String(Math.floor((difference / (1000 * 60 * 60)) % 24)).padStart(2, "0");
+    elements.minutes.textContent = String(Math.floor((difference / (1000 * 60)) % 60)).padStart(2, "0");
+    elements.seconds.textContent = String(Math.floor((difference / 1000) % 60)).padStart(2, "0");
+  }
+
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+
+  const backTop = document.getElementById("backTop");
+  window.addEventListener("scroll", function () {
+    if (backTop) {
+      backTop.style.display = window.scrollY > 500 ? "block" : "none";
+    }
+  });
+
+  if (backTop) {
+    backTop.addEventListener("click", function () {
+      stopAutoScroll();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+  }
+});
+</script>
+
+</body>
+</html>
