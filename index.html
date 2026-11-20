@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Preeti &amp; Aditya | Wedding Invitation</title>
+<title>Preeti & Aditya | Wedding Invitation</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
 
@@ -24,8 +24,6 @@ html {
   --text-main: #543f3e;
   --text-light: #947d7c;
   --accent: #b56c6e;
-  --rose-foil: #c97a7e;
-  --gold-solid: #c49b38;
   --border: rgba(181, 108, 110, 0.25);
 }
 
@@ -62,102 +60,12 @@ h1, h2, h3, .serif {
 }
 
 /* =========================================
-   FOIL SVG ACCENTS & DIVIDERS
-   ========================================= */
-.foil-divider {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 14px;
-  margin: 22px auto;
-  max-width: 280px;
-}
-
-.foil-divider::before,
-.foil-divider::after {
-  content: '';
-  flex: 1;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(196, 155, 56, 0.55), rgba(201, 122, 126, 0.55), transparent);
-}
-
-.corner-flourish {
-  position: absolute;
-  width: 56px;
-  height: 56px;
-  pointer-events: none;
-  opacity: 0.75;
-}
-
-.corner-flourish.top-left {
-  top: 10px;
-  left: 10px;
-}
-
-.corner-flourish.top-right {
-  top: 10px;
-  right: 10px;
-  transform: scaleX(-1);
-}
-
-.corner-flourish.bottom-left {
-  bottom: 10px;
-  left: 10px;
-  transform: scaleY(-1);
-}
-
-.corner-flourish.bottom-right {
-  bottom: 10px;
-  right: 10px;
-  transform: scale(-1, -1);
-}
-
-/* =========================================
-   CONTINUOUS FALLING ROSE PETALS LAYER
-   ========================================= */
-#petalsLayer {
-  position: fixed;
-  inset: 0;
-  width: 100vw;
-  height: 100vh;
-  pointer-events: none;
-  z-index: 950;
-  overflow: hidden;
-}
-
-.petal {
-  position: absolute;
-  top: 0;
-  background: radial-gradient(circle at 30% 30%, #f7b5b9 0%, #df7a81 70%, #c8646c 100%);
-  border: 1px solid rgba(212, 165, 92, 0.35);
-  border-radius: 150% 0 150% 0;
-  pointer-events: none;
-  box-shadow: 0 3px 8px rgba(181, 108, 110, 0.22);
-  will-change: transform, opacity;
-}
-
-@keyframes fallPetal {
-  0% {
-    transform: translate3d(0px, -30px, 0) rotate(0deg);
-    opacity: 0.9;
-  }
-  50% {
-    transform: translate3d(26px, 50vh, 0) rotate(180deg);
-    opacity: 0.88;
-  }
-  100% {
-    transform: translate3d(-20px, 106vh, 0) rotate(360deg);
-    opacity: 0.85;
-  }
-}
-
-/* =========================================
-   ROYAL SCROLL WELCOME SCREEN
+   ROYAL SCROLL WELCOME SCREEN (ENLARGED & ELEGANT)
    ========================================= */
 #welcomeScreen {
   position: fixed;
   inset: 0;
-  z-index: 900;
+  z-index: 1000;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -195,14 +103,15 @@ h1, h2, h3, .serif {
   box-shadow: 0 35px 80px rgba(84, 63, 62, 0.25);
 }
 
+/* Scroll wooden rods top & bottom */
 .scroll-rod-top, .scroll-rod-bottom {
   position: absolute;
   left: -10px;
   right: -10px;
   height: 16px;
-  background: linear-gradient(90deg, #b8925a, #f5e5c8, #c49b38, #f5e5c8, #b8925a);
+  background: linear-gradient(90deg, #c4a482, #f3e2ca, #c4a482);
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.18);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.18);
 }
 .scroll-rod-top { top: -8px; }
 .scroll-rod-bottom { bottom: -8px; }
@@ -210,8 +119,6 @@ h1, h2, h3, .serif {
 .scroll-content {
   opacity: 1;
   transition: opacity 0.8s ease;
-  position: relative;
-  z-index: 2;
 }
 
 .scroll-content h1 {
@@ -230,7 +137,7 @@ h1, h2, h3, .serif {
   color: var(--text-main);
 }
 
-/* Satin Ribbon & Intricate Center Knot */
+/* Pleasant Satin Ribbon & Intricate Center Knot */
 .ribbon-band {
   position: absolute;
   top: 50%;
@@ -252,6 +159,7 @@ h1, h2, h3, .serif {
   opacity: 0;
 }
 
+/* Realistic Bow Knot & Wax Seal in Center */
 .ribbon-knot {
   position: relative;
   display: flex;
@@ -259,6 +167,7 @@ h1, h2, h3, .serif {
   justify-content: center;
 }
 
+/* Left & Right Bow Loops */
 .ribbon-knot::before, .ribbon-knot::after {
   content: '';
   position: absolute;
@@ -282,8 +191,7 @@ h1, h2, h3, .serif {
   height: 58px;
   background: radial-gradient(circle at 35% 35%, #d67a7e 0%, #b55459 60%, #8c383d 100%);
   border-radius: 50%;
-  border: 1.5px solid rgba(244, 227, 158, 0.65);
-  box-shadow: 0 4px 12px rgba(140, 56, 61, 0.45), inset 0 2px 4px rgba(255, 255, 255, 0.4);
+  box-shadow: 0 4px 12px rgba(140, 56, 61, 0.45), inset 0 2px 4px rgba(255,255,255,0.4);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -307,6 +215,23 @@ h1, h2, h3, .serif {
 @keyframes pulseHint {
   0%, 100% { opacity: 0.4; }
   50% { opacity: 1; }
+}
+
+/* Floating Rose Petals Animation */
+.petal {
+  position: absolute;
+  background: #e8a5a7;
+  border-radius: 150% 0 150% 0;
+  opacity: 0.7;
+  animation: fallPetal linear infinite;
+  z-index: 999;
+  pointer-events: none;
+}
+
+@keyframes fallPetal {
+  0% { transform: translateY(-10vh) rotate(0deg); opacity: 0; }
+  20% { opacity: 0.8; }
+  100% { transform: translateY(105vh) rotate(360deg); opacity: 0; }
 }
 
 /* =========================================
@@ -341,10 +266,18 @@ section {
   background: radial-gradient(circle at center, #fff7f5 0%, transparent 70%);
 }
 
+.hero-divider {
+  width: 1px;
+  height: 60px;
+  background: var(--accent);
+  margin: 30px auto;
+  opacity: 0.5;
+}
+
 .hero h1 {
   font-size: clamp(40px, 8vw, 65px);
   letter-spacing: 2px;
-  margin: 20px 0 8px;
+  margin: 20px 0;
   line-height: 1.3;
 }
 
@@ -359,7 +292,7 @@ section {
 .hero .date {
   font-size: 18px;
   letter-spacing: 3px;
-  margin-top: 10px;
+  margin-top: 15px;
 }
 
 .parents-section {
@@ -367,7 +300,6 @@ section {
   padding: 80px 20px;
   border-top: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
-  position: relative;
 }
 
 .section-title {
@@ -380,7 +312,7 @@ section {
   display: flex;
   justify-content: center;
   gap: 80px;
-  margin-top: 40px;
+  margin-top: 50px;
   flex-wrap: wrap;
 }
 
@@ -401,14 +333,14 @@ section {
   justify-content: center;
   gap: 20px;
   flex-wrap: wrap;
-  margin-top: 32px;
+  margin-top: 40px;
 }
 
 .time-box {
   width: 90px;
   padding: 20px 0;
   background: var(--surface);
-  border: 1px solid rgba(196, 155, 56, 0.35);
+  border: 1px solid var(--border);
   border-radius: 4px;
   box-shadow: 0 5px 15px rgba(181, 108, 110, 0.08);
 }
@@ -434,7 +366,7 @@ section {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 30px;
-  margin-top: 40px;
+  margin-top: 50px;
 }
 
 .event-card {
@@ -450,9 +382,10 @@ section {
 }
 
 .event-icon {
-  display: flex;
-  justify-content: center;
+  font-family: 'Great Vibes', cursive;
+  font-size: 35px;
   margin-bottom: 15px;
+  display: block;
 }
 
 .event-card h3 {
@@ -538,7 +471,7 @@ section {
   position: fixed;
   bottom: 30px;
   right: 30px;
-  z-index: 980;
+  z-index: 500;
   width: 50px;
   height: 50px;
   border-radius: 50%;
@@ -562,28 +495,12 @@ section {
   border-color: var(--accent);
 }
 
-#musicStatus {
-  position: fixed;
-  bottom: 38px;
-  right: 90px;
-  z-index: 980;
-  background: var(--surface);
-  color: var(--text-main);
-  border: 1px solid var(--border);
-  padding: 6px 14px;
-  border-radius: 20px;
-  font-size: 11px;
-  letter-spacing: 1px;
-  display: none;
-  box-shadow: 0 4px 14px rgba(84, 63, 62, 0.1);
-}
-
 #backTop {
   display: none;
   position: fixed;
   bottom: 95px;
   right: 30px;
-  z-index: 980;
+  z-index: 500;
   background: var(--text-main);
   color: white;
   border: none;
@@ -620,7 +537,7 @@ footer {
   transform: translateY(0);
 }
 
-@media (max-width: 600px) {
+@media(max-width: 600px) {
   section { padding: 70px 20px; }
   .parents-grid { gap: 40px; flex-direction: column; }
   .time-box { width: 75px; padding: 15px 0; }
@@ -632,58 +549,12 @@ footer {
 
 <body>
 
-<!-- Reusable Foil SVG Gradients -->
-<svg width="0" height="0" style="position:absolute;pointer-events:none;" aria-hidden="true">
-  <defs>
-    <linearGradient id="goldFoilGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#c69736" />
-      <stop offset="45%" stop-color="#f5df98" />
-      <stop offset="75%" stop-color="#b58424" />
-      <stop offset="100%" stop-color="#ebd07e" />
-    </linearGradient>
-    <linearGradient id="roseFoilGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#b56c6e" />
-      <stop offset="50%" stop-color="#e9a7aa" />
-      <stop offset="100%" stop-color="#a85a5d" />
-    </linearGradient>
-  </defs>
-</svg>
-
-<!-- Continuous Falling Rose Petals Container -->
-<div id="petalsLayer" aria-hidden="true"></div>
-
-<!-- Royal Scroll Welcome Screen -->
+<!-- Royal Scroll Welcome Screen (Enlarged & Pleasant Gold Ribbon with Knot & Seal) -->
 <div id="welcomeScreen" role="button" tabindex="0" aria-label="Royal scroll wedding invitation">
   <div class="scroll-container">
     <div class="scroll-rod-top"></div>
-
-    <!-- Gold & Rose Foil Corner Filigree -->
-    <svg class="corner-flourish top-left" viewBox="0 0 60 60" fill="none" aria-hidden="true">
-      <path d="M8 52 C8 22, 22 8, 52 8" stroke="url(#goldFoilGrad)" stroke-width="1.4" stroke-linecap="round" />
-      <path d="M14 44 C16 26, 26 16, 44 14" stroke="url(#roseFoilGrad)" stroke-width="1.1" stroke-linecap="round" />
-      <circle cx="52" cy="8" r="2.5" fill="url(#goldFoilGrad)" />
-      <path d="M18 18 C22 14, 28 15, 29 20 C24 21, 19 21, 18 18 Z" fill="url(#roseFoilGrad)" opacity="0.85" />
-    </svg>
-    <svg class="corner-flourish top-right" viewBox="0 0 60 60" fill="none" aria-hidden="true">
-      <path d="M8 52 C8 22, 22 8, 52 8" stroke="url(#goldFoilGrad)" stroke-width="1.4" stroke-linecap="round" />
-      <path d="M14 44 C16 26, 26 16, 44 14" stroke="url(#roseFoilGrad)" stroke-width="1.1" stroke-linecap="round" />
-      <circle cx="52" cy="8" r="2.5" fill="url(#goldFoilGrad)" />
-      <path d="M18 18 C22 14, 28 15, 29 20 C24 21, 19 21, 18 18 Z" fill="url(#roseFoilGrad)" opacity="0.85" />
-    </svg>
-    <svg class="corner-flourish bottom-left" viewBox="0 0 60 60" fill="none" aria-hidden="true">
-      <path d="M8 52 C8 22, 22 8, 52 8" stroke="url(#goldFoilGrad)" stroke-width="1.4" stroke-linecap="round" />
-      <path d="M14 44 C16 26, 26 16, 44 14" stroke="url(#roseFoilGrad)" stroke-width="1.1" stroke-linecap="round" />
-      <circle cx="52" cy="8" r="2.5" fill="url(#goldFoilGrad)" />
-      <path d="M18 18 C22 14, 28 15, 29 20 C24 21, 19 21, 18 18 Z" fill="url(#roseFoilGrad)" opacity="0.85" />
-    </svg>
-    <svg class="corner-flourish bottom-right" viewBox="0 0 60 60" fill="none" aria-hidden="true">
-      <path d="M8 52 C8 22, 22 8, 52 8" stroke="url(#goldFoilGrad)" stroke-width="1.4" stroke-linecap="round" />
-      <path d="M14 44 C16 26, 26 16, 44 14" stroke="url(#roseFoilGrad)" stroke-width="1.1" stroke-linecap="round" />
-      <circle cx="52" cy="8" r="2.5" fill="url(#goldFoilGrad)" />
-      <path d="M18 18 C22 14, 28 15, 29 20 C24 21, 19 21, 18 18 Z" fill="url(#roseFoilGrad)" opacity="0.85" />
-    </svg>
-
-    <!-- Satin Ribbon Band with Bow Loops & Wax Seal Center -->
+    
+    <!-- Pleasant Satin Ribbon Band with Bow Loops & Wax Seal Center -->
     <div class="ribbon-band">
       <div class="ribbon-knot">
         <div class="ribbon-seal">P&amp;A</div>
@@ -692,7 +563,7 @@ footer {
 
     <div class="scroll-content">
       <p class="eyebrow" style="margin-bottom: 12px;">The Wedding Celebration Of</p>
-      <h1>Preeti &amp; Aditya</h1>
+      <h1>Preeti & Aditya</h1>
       <p class="date">04 . 01 . 2027</p>
       <p class="tap-hint">Opening in 2 seconds...</p>
     </div>
@@ -706,7 +577,6 @@ footer {
   <source src="./song.mp3" type="audio/mpeg">
 </audio>
 
-<div id="musicStatus" role="status">Tap ♫ to play song.mp3</div>
 <button id="musicToggle" class="paused" aria-label="Play music" aria-pressed="false">♫</button>
 
 <!-- Main Invitation -->
@@ -714,41 +584,23 @@ footer {
 
   <section class="hero fade-in">
     <p class="eyebrow">The Wedding Celebration Of</p>
-    <h1>Preeti <span>&amp;</span> Aditya</h1>
-
-    <!-- Gold & Rose Foil Botanical Lotus Divider -->
-    <div class="foil-divider" aria-hidden="true">
-      <svg width="36" height="24" viewBox="0 0 36 24" fill="none">
-        <path d="M18 4 C14 10, 14 16, 18 21 C22 16, 22 10, 18 4 Z" fill="url(#roseFoilGrad)" />
-        <path d="M17 7 C11 9, 7 14, 7 19 C12 19, 16 15, 17 7 Z" fill="url(#goldFoilGrad)" opacity="0.85" />
-        <path d="M19 7 C25 9, 29 14, 29 19 C24 19, 20 15, 19 7 Z" fill="url(#goldFoilGrad)" opacity="0.85" />
-        <circle cx="18" cy="21" r="1.5" fill="url(#goldFoilGrad)" />
-      </svg>
-    </div>
-
+    <h1>Preeti <span>&</span> Aditya</h1>
+    <div class="hero-divider"></div>
     <p class="date serif">04 . 01 . 2027 &nbsp;|&nbsp; 11:38 AM</p>
     <p class="eyebrow" style="margin-top: 20px;">Vidyadhiraj Bhavan, Hubli</p>
   </section>
 
   <div class="parents-section fade-in">
     <section style="padding: 0;">
-      <h2 class="script" style="font-size: 45px; margin-bottom: 10px;">With Love &amp; Blessings</h2>
+      <h2 class="script" style="font-size: 45px; margin-bottom: 10px;">With Love & Blessings</h2>
       <p class="eyebrow">A New Chapter Begins</p>
-
-      <div class="foil-divider" aria-hidden="true">
-        <svg width="28" height="18" viewBox="0 0 28 18" fill="none">
-          <path d="M14 2 L17 9 L14 16 L11 9 Z" fill="url(#goldFoilGrad)" />
-          <circle cx="6" cy="9" r="2" fill="url(#roseFoilGrad)" />
-          <circle cx="22" cy="9" r="2" fill="url(#roseFoilGrad)" />
-        </svg>
-      </div>
-
+      
       <div class="parents-grid">
         <div class="parent-block">
           <h3 class="serif">Preeti</h3>
           <p class="eyebrow" style="margin-bottom: 5px;">Daughter of</p>
           <p class="serif" style="font-size: 16px; color: var(--text-main);">
-            Mr. Prasad Pai<br>&amp;<br>Mrs. Pavitra Pai
+            Mr. Prasad Pai<br>&<br>Mrs. Pavitra Pai
           </p>
         </div>
 
@@ -756,7 +608,7 @@ footer {
           <h3 class="serif">Aditya</h3>
           <p class="eyebrow" style="margin-bottom: 5px;">Son of</p>
           <p class="serif" style="font-size: 16px; color: var(--text-main);">
-            Mr. Umesh Bhende<br>&amp;<br>Mrs. Apoorva Bhende
+            Mr. Umesh Bhende<br>&<br>Mrs. Apoorva Bhende
           </p>
         </div>
       </div>
@@ -766,12 +618,6 @@ footer {
   <section class="countdown fade-in">
     <h2 class="section-title">The Countdown</h2>
     <p class="eyebrow">Awaiting Our Forever</p>
-
-    <div class="foil-divider" aria-hidden="true">
-      <svg width="24" height="16" viewBox="0 0 24 16" fill="none">
-        <path d="M12 2 C14.5 6, 14.5 10, 12 14 C9.5 10, 9.5 6, 12 2 Z" fill="url(#goldFoilGrad)" />
-      </svg>
-    </div>
 
     <div class="countdown-grid">
       <div class="time-box"><strong id="days">00</strong><span>DAYS</span></div>
@@ -785,21 +631,9 @@ footer {
     <h2 class="section-title">The Itinerary</h2>
     <p class="eyebrow">Four Moments · One Story</p>
 
-    <div class="foil-divider" aria-hidden="true">
-      <svg width="32" height="18" viewBox="0 0 32 18" fill="none">
-        <path d="M4 9 C8 4, 13 4, 16 9 C13 14, 8 14, 4 9 Z" stroke="url(#goldFoilGrad)" stroke-width="1.2" fill="url(#roseFoilGrad)" fill-opacity="0.25" />
-        <path d="M28 9 C24 4, 19 4, 16 9 C19 14, 24 14, 28 9 Z" stroke="url(#goldFoilGrad)" stroke-width="1.2" fill="url(#roseFoilGrad)" fill-opacity="0.25" />
-      </svg>
-    </div>
-
     <div class="event-container">
       <div class="event-card event-haldi">
-        <span class="event-icon" aria-hidden="true">
-          <svg width="30" height="30" viewBox="0 0 30 30" fill="none">
-            <circle cx="15" cy="15" r="5" fill="url(#goldFoilGrad)" />
-            <path d="M15 3 L17 9 L15 11 L13 9 Z M15 27 L17 21 L15 19 L13 21 Z M3 15 L9 13 L11 15 L9 17 Z M27 15 L21 13 L19 15 L21 17 Z" fill="url(#goldFoilGrad)" />
-          </svg>
-        </span>
+        <span class="event-icon">✧</span>
         <h3 class="serif">Haldi</h3>
         <p class="eyebrow">2 January 2027</p>
         <p class="time">11:00 AM</p>
@@ -807,13 +641,7 @@ footer {
       </div>
 
       <div class="event-card event-mehendi">
-        <span class="event-icon" aria-hidden="true">
-          <svg width="30" height="30" viewBox="0 0 30 30" fill="none">
-            <path d="M15 5 C11 10, 11 18, 15 25 C19 18, 19 10, 15 5 Z" stroke="url(#goldFoilGrad)" stroke-width="1.3" fill="url(#roseFoilGrad)" fill-opacity="0.3" />
-            <path d="M6 14 C10 12, 13 14, 15 18 C11 19, 8 17, 6 14 Z" fill="url(#goldFoilGrad)" opacity="0.8" />
-            <path d="M24 14 C20 12, 17 14, 15 18 C19 19, 22 17, 24 14 Z" fill="url(#goldFoilGrad)" opacity="0.8" />
-          </svg>
-        </span>
+        <span class="event-icon">❀</span>
         <h3 class="serif">Mehendi</h3>
         <p class="eyebrow">2 January 2027</p>
         <p class="time">7:00 PM</p>
@@ -821,13 +649,7 @@ footer {
       </div>
 
       <div class="event-card event-sangeet">
-        <span class="event-icon" aria-hidden="true">
-          <svg width="30" height="30" viewBox="0 0 30 30" fill="none">
-            <path d="M12 21 V8 L23 6 V19" stroke="url(#goldFoilGrad)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
-            <circle cx="9.5" cy="21" r="3" fill="url(#roseFoilGrad)" />
-            <circle cx="20.5" cy="19" r="3" fill="url(#goldFoilGrad)" />
-          </svg>
-        </span>
+        <span class="event-icon">♪</span>
         <h3 class="serif">Sangeet</h3>
         <p class="eyebrow">3 January 2027</p>
         <p class="time">7:00 PM</p>
@@ -835,11 +657,7 @@ footer {
       </div>
 
       <div class="event-card event-wedding">
-        <span class="event-icon" aria-hidden="true">
-          <svg width="30" height="30" viewBox="0 0 30 30" fill="none">
-            <path d="M15 25 C15 25, 5 18.5, 5 11.5 C5 8.2, 7.6 6, 10.6 6 C12.5 6, 14.2 7, 15 8.5 C15.8 7, 17.5 6, 19.4 6 C22.4 6, 25 8.2, 25 11.5 C25 18.5, 15 25, 15 25 Z" stroke="url(#goldFoilGrad)" stroke-width="1.3" fill="url(#roseFoilGrad)" fill-opacity="0.65" />
-          </svg>
-        </span>
+        <span class="event-icon">♡</span>
         <h3 class="serif">Wedding</h3>
         <p class="eyebrow">4 January 2027</p>
         <p class="time">11:38 AM</p>
@@ -863,18 +681,11 @@ footer {
 
   <section class="closing fade-in" style="max-width: 100%;">
     <p class="eyebrow">We look forward to celebrating with you</p>
-    <h2>Preeti &amp; Aditya</h2>
-    <div class="foil-divider" aria-hidden="true">
-      <svg width="34" height="20" viewBox="0 0 34 20" fill="none">
-        <path d="M17 3 C14 8, 14 13, 17 17 C20 13, 20 8, 17 3 Z" fill="url(#roseFoilGrad)" />
-        <circle cx="9" cy="10" r="2" fill="url(#goldFoilGrad)" />
-        <circle cx="25" cy="10" r="2" fill="url(#goldFoilGrad)" />
-      </svg>
-    </div>
+    <h2>Preeti & Aditya</h2>
   </section>
 
   <footer>
-    Made with love · Preeti &amp; Aditya · 2027
+    Made with love · Preeti & Aditya · 2027
   </footer>
 
 </main>
@@ -883,13 +694,12 @@ footer {
 
 <script>
 document.addEventListener("DOMContentLoaded", function () {
+
   const welcomeScreen = document.getElementById("welcomeScreen");
   const invitation = document.getElementById("invitation");
-  const petalsLayer = document.getElementById("petalsLayer");
 
   const music = document.getElementById("weddingMusic");
   const musicToggle = document.getElementById("musicToggle");
-  const musicStatus = document.getElementById("musicStatus");
 
   let isOpened = false;
   let autoScrollStopped = false;
@@ -906,38 +716,22 @@ document.addEventListener("DOMContentLoaded", function () {
 
   document.querySelectorAll('.fade-in').forEach((el) => observer.observe(el));
 
-  // Continuous Falling Rose Petals Effect (Pre-staggered negative delays so petals are mid-air immediately)
+  // Floating Rose Petals Effect
   function createPetals() {
-    if (!petalsLayer) return;
-    petalsLayer.innerHTML = "";
-    const count = 24;
-    for (let i = 0; i < count; i++) {
+    for (let i = 0; i < 15; i++) {
       const petal = document.createElement('div');
       petal.classList.add('petal');
-      const leftPos = ((i / count) * 94 + Math.random() * 4).toFixed(1);
-      const size = Math.round(Math.random() * 10 + 14); // 14px to 24px
-      const duration = (Math.random() * 4 + 5.5).toFixed(2); // 5.5s to 9.5s
-      const negDelay = (-Math.random() * parseFloat(duration)).toFixed(2);
-
-      petal.style.left = leftPos + 'vw';
-      petal.style.width = size + 'px';
-      petal.style.height = Math.round(size * 0.85) + 'px';
-      petal.style.animation = `fallPetal ${duration}s linear ${negDelay}s infinite`;
-      petalsLayer.appendChild(petal);
+      petal.style.left = Math.random() * 100 + 'vw';
+      petal.style.top = -20 + 'px';
+      const size = Math.random() * 12 + 10 + 'px';
+      petal.style.width = size;
+      petal.style.height = size;
+      petal.style.animationDuration = Math.random() * 5 + 4 + 's';
+      petal.style.animationDelay = Math.random() * 3 + 's';
+      document.body.appendChild(petal);
     }
   }
   createPetals();
-
-  function showMusicStatus(text) {
-    if (!musicStatus) return;
-    musicStatus.textContent = text;
-    musicStatus.style.display = "block";
-  }
-
-  function hideMusicStatus() {
-    if (!musicStatus) return;
-    musicStatus.style.display = "none";
-  }
 
   function updateMusicButton() {
     if (!music || !musicToggle) return;
@@ -945,15 +739,10 @@ document.addEventListener("DOMContentLoaded", function () {
       musicToggle.textContent = "♫";
       musicToggle.classList.remove("playing");
       musicToggle.classList.add("paused");
-      musicToggle.setAttribute("aria-label", "Play music");
-      musicToggle.setAttribute("aria-pressed", "false");
     } else {
       musicToggle.innerHTML = "<span style='font-size:14px;'>||</span>";
       musicToggle.classList.remove("paused");
       musicToggle.classList.add("playing");
-      musicToggle.setAttribute("aria-label", "Pause music");
-      musicToggle.setAttribute("aria-pressed", "true");
-      hideMusicStatus();
     }
   }
 
@@ -964,11 +753,6 @@ document.addEventListener("DOMContentLoaded", function () {
       updateMusicButton();
     } catch (error) {
       updateMusicButton();
-      if (music.error) {
-        showMusicStatus("song.mp3 not found next to HTML");
-      } else {
-        showMusicStatus("Tap ♫ to play music");
-      }
     }
   }
 
@@ -1022,7 +806,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }, 2800);
   }
 
-  // Auto-open after 2 seconds (or tap anytime)
+  // Auto-open after exactly 2 seconds (or tap anytime)
   setTimeout(handleOpenScroll, 2000);
 
   if (welcomeScreen) {
@@ -1044,9 +828,6 @@ document.addEventListener("DOMContentLoaded", function () {
     music.addEventListener("play", updateMusicButton);
     music.addEventListener("pause", updateMusicButton);
     music.addEventListener("ended", updateMusicButton);
-    music.addEventListener("error", function () {
-      showMusicStatus("Check ./song.mp3 file path");
-    });
   }
 
   updateMusicButton();
