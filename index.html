@@ -117,7 +117,10 @@ h1, h2, h3, .serif {
    ========================================= */
 #petalsLayer {
   position: fixed;
-  inset: 0;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
   pointer-events: none;
   z-index: 950;
   overflow: hidden;
@@ -125,33 +128,30 @@ h1, h2, h3, .serif {
 
 .petal {
   position: absolute;
-  top: -24px;
-  background: linear-gradient(135deg, #f5c6c8, #e08d91);
+  top: -30px;
+  background: linear-gradient(135deg, #f5b9bc, #d97c82);
   border-radius: 150% 0 150% 0;
-  opacity: 0.72;
   pointer-events: none;
-  will-change: transform, opacity;
-  animation-name: fallPetal;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
+  box-shadow: 0 2px 6px rgba(181, 108, 110, 0.15);
 }
 
 @keyframes fallPetal {
   0% {
-    transform: translate3d(0, -10vh, 0) rotate(0deg);
+    transform: translate3d(0px, -20px, 0) rotate(0deg);
     opacity: 0;
   }
-  15% {
-    opacity: 0.78;
+  12% {
+    opacity: 0.82;
   }
   50% {
-    transform: translate3d(18px, 48vh, 0) rotate(180deg);
+    transform: translate3d(22px, 50vh, 0) rotate(180deg);
+    opacity: 0.78;
   }
-  85% {
+  88% {
     opacity: 0.72;
   }
   100% {
-    transform: translate3d(-14px, 108vh, 0) rotate(360deg);
+    transform: translate3d(-18px, 105vh, 0) rotate(360deg);
     opacity: 0;
   }
 }
@@ -162,7 +162,7 @@ h1, h2, h3, .serif {
 #welcomeScreen {
   position: fixed;
   inset: 0;
-  z-index: 1000;
+  z-index: 900;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -567,6 +567,22 @@ section {
   border-color: var(--accent);
 }
 
+#musicStatus {
+  position: fixed;
+  bottom: 38px;
+  right: 90px;
+  z-index: 980;
+  background: var(--surface);
+  color: var(--text-main);
+  border: 1px solid var(--border);
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 11px;
+  letter-spacing: 1px;
+  display: none;
+  box-shadow: 0 4px 14px rgba(84, 63, 62, 0.1);
+}
+
 #backTop {
   display: none;
   position: fixed;
@@ -695,6 +711,7 @@ footer {
   <source src="./song.mp3" type="audio/mpeg">
 </audio>
 
+<div id="musicStatus" role="status">Tap ♫ to play song.mp3</div>
 <button id="musicToggle" class="paused" aria-label="Play music" aria-pressed="false">♫</button>
 
 <!-- Main Invitation -->
@@ -877,6 +894,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const music = document.getElementById("weddingMusic");
   const musicToggle = document.getElementById("musicToggle");
+  const musicStatus = document.getElementById("musicStatus");
 
   let isOpened = false;
   let autoScrollStopped = false;
@@ -893,23 +911,37 @@ document.addEventListener("DOMContentLoaded", function () {
 
   document.querySelectorAll('.fade-in').forEach((el) => observer.observe(el));
 
-  // Floating Rose Petals Effect (Infinite CSS loop so petals continuously fall)
+  // Continuous Falling Rose Petals Effect
   function createPetals() {
     if (!petalsLayer) return;
     petalsLayer.innerHTML = "";
     for (let i = 0; i < 16; i++) {
       const petal = document.createElement('div');
       petal.classList.add('petal');
-      petal.style.left = (Math.random() * 96 + 2) + 'vw';
-      const size = Math.random() * 12 + 10;
+      const leftPos = (i * 6 + Math.random() * 4).toFixed(1);
+      const size = Math.round(Math.random() * 11 + 11);
+      const duration = (Math.random() * 4 + 5).toFixed(2);
+      const delay = (Math.random() * 2.5).toFixed(2);
+
+      petal.style.left = leftPos + 'vw';
       petal.style.width = size + 'px';
-      petal.style.height = (size * 0.85) + 'px';
-      petal.style.animationDuration = (Math.random() * 5 + 5).toFixed(2) + 's';
-      petal.style.animationDelay = (-Math.random() * 6).toFixed(2) + 's';
+      petal.style.height = Math.round(size * 0.85) + 'px';
+      petal.style.animation = `fallPetal ${duration}s linear ${delay}s infinite`;
       petalsLayer.appendChild(petal);
     }
   }
   createPetals();
+
+  function showMusicStatus(text) {
+    if (!musicStatus) return;
+    musicStatus.textContent = text;
+    musicStatus.style.display = "block";
+  }
+
+  function hideMusicStatus() {
+    if (!musicStatus) return;
+    musicStatus.style.display = "none";
+  }
 
   function updateMusicButton() {
     if (!music || !musicToggle) return;
@@ -917,10 +949,15 @@ document.addEventListener("DOMContentLoaded", function () {
       musicToggle.textContent = "♫";
       musicToggle.classList.remove("playing");
       musicToggle.classList.add("paused");
+      musicToggle.setAttribute("aria-label", "Play music");
+      musicToggle.setAttribute("aria-pressed", "false");
     } else {
       musicToggle.innerHTML = "<span style='font-size:14px;'>||</span>";
       musicToggle.classList.remove("paused");
       musicToggle.classList.add("playing");
+      musicToggle.setAttribute("aria-label", "Pause music");
+      musicToggle.setAttribute("aria-pressed", "true");
+      hideMusicStatus();
     }
   }
 
@@ -931,6 +968,11 @@ document.addEventListener("DOMContentLoaded", function () {
       updateMusicButton();
     } catch (error) {
       updateMusicButton();
+      if (music.error) {
+        showMusicStatus("song.mp3 not found next to HTML");
+      } else {
+        showMusicStatus("Tap ♫ to play music");
+      }
     }
   }
 
@@ -1006,6 +1048,9 @@ document.addEventListener("DOMContentLoaded", function () {
     music.addEventListener("play", updateMusicButton);
     music.addEventListener("pause", updateMusicButton);
     music.addEventListener("ended", updateMusicButton);
+    music.addEventListener("error", function () {
+      showMusicStatus("Check ./song.mp3 file path");
+    });
   }
 
   updateMusicButton();
